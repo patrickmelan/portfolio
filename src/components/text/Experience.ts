@@ -1,32 +1,49 @@
 const experiences = [
   {
-    title: "Software Development Intern",
+    title: "Freelance Full-Stack Developer",
+    company: "Easton Flipped, LLC",
+    period: "February 2026 - Present",
+    type: "Freelance",
+    description:
+      "Built and deployed a full-stack real estate platform for a local property flipping business, handling everything from infrastructure to authentication.",
+    achievements: [
+      "Built a full-stack platform with Next.js 15 and PostgreSQL via Drizzle ORM",
+      "Implemented JWT authentication at the edge via Next.js middleware",
+      "Configured multi-container Docker Compose deployment with Caddy reverse proxy for auto HTTPS",
+      "Integrated reCAPTCHA v3 and self-hosted Umami analytics",
+      "Set up AWS Route 53 DNS and S3 image uploads for admin dashboard",
+    ],
+    technologies: ["Next.js 15", "PostgreSQL", "Drizzle ORM", "Docker", "AWS S3", "AWS Route 53"],
+  },
+  {
+    title: "IT Software Development Intern",
     company: "St. Luke's University Health Network",
     period: "June 2024 - August 2024",
     type: "Internship",
     description:
-      "Assisted in building dashboards for employee/network data and relations. Gained experience in working with a team and using agile methodologies.",
+      "Worked alongside software development professionals to plan, build, test, and deploy internal tooling, with a focus on data dashboards and workflow automation.",
     achievements: [
-      "Programmed solutions in C#, Python, and JavaScript",
-      "Built Cloud Flows & Azure Functions",
-      "Used Microsoft Power BI, Power Apps, and Power Automate",
-      "Built Realtime Data Dashboards",
+      "Built a real-time Power BI dashboard for employee statistics across the network",
+      "Participated in Agile sprint planning and contributed to team task board",
+      "Developed automation solutions using Power Automate and Azure Functions",
+      "Gained hands-on experience with the full in-house software development lifecycle",
     ],
-    technologies: ["Microsoft Power BI", "Azure", "Python", "C#"],
+    technologies: ["Microsoft Power BI", "Power Automate", "Azure", "Python", "C#"],
   },
   {
-    title: "Cybersecurity Intern",
+    title: "IT Security Intern",
     company: "St. Luke's University Health Network",
     period: "June 2023 - August 2023",
     type: "Internship",
-    description: "sdf",
+    description:
+      "Rotated through Identity Access Management, Disaster Recovery, and Cybersecurity teams, gaining exposure to enterprise security operations at a major health network.",
     achievements: [
-      "Developed high-level KQL queries for cybersecurity",
-      "Used Microsoft Defender and Azure Security",
-      "Gained experience in Azure Active Directory",
-      "Learned how real-life IT disaster recovery plans work"
+      "Wrote KQL queries in Microsoft Sentinel for cybersecurity monitoring and employee cyber safety",
+      "Learned IAM policies and procedures; assisted in onboarding and access support",
+      "Shadowed senior engineers to understand IT security architecture and incident response",
+      "Participated in cross-team daily standups covering multiple IT departments",
     ],
-    technologies: ["KQL", "Microsoft Azure/AD"],
+    technologies: ["KQL", "Microsoft Sentinel", "Azure AD"],
   },
   {
     title: "Student, B.S. in Software Engineering",
@@ -34,28 +51,28 @@ const experiences = [
     period: "September 2025 - June 2030 (expected)",
     type: "Education",
     description:
-      "Advanced coursework in computer science, including data structures, algorithms, and software development principles.",
+      "Pursuing a B.S. in Software Engineering with coursework spanning algorithms, systems design, and applied mathematics.",
     achievements: [
-      "Current 4.0 GPA in all CS-related courses",
+      "3.95 GPA — Dean's List, Fall & Winter Quarters",
+      "Relevant coursework: Programming I & II, Computing & Informatics Design I-III, Multivariate Calculus",
       "Active member of the Drexel AI/ML Society",
-      "Working with a team to build an ML model that predicts sports statistics",
-      "Student Manager for the Women's Basketball Team",
+      "Student Manager for the Women's Basketball Team — travel to away games with players and coaches",
     ],
-    technologies: ["Python", "Unix", "Git",],
+    technologies: ["Python", "Unix", "Git"],
   },
   {
     title: "High School Student",
     company: "Easton Area High School",
-    period: "September 2025 - June 2030 (expected)",
+    period: "September 2021 - June 2025",
     type: "Education",
     description:
-      "Advanced coursework in computer science, including data structures, algorithms, and software development principles.",
+      "Graduated with a strong CS and business background, competing in state-level programming competitions.",
     achievements: [
       "Maintained a 4.0 GPA in all CS-related courses",
       "Commencement Welcome Speaker",
       "2023 PA FBLA Coding & Programming State Champion",
       "2024 PA FBLA Mobile Application Development State Champion",
-      "Worked as a PIAA Basketball official since December, '23",
+      "Worked as a PIAA Basketball official since December 2023",
     ],
     technologies: [
       "Python",

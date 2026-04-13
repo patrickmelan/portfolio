@@ -23,29 +23,26 @@ const About = () => {
             viewport={{ once: true }}>
             <p className="text-lg text-slate-300 leading-relaxed">
               Hello! I&apos;m Patrick Melan, a freshman at Drexel University
-              passionate about business, data science, and software development.
-              I have a strong foundation in languages such as TypeScript and
-              Python, but I&apos;m always trying to learn more and better my
-              skills. For example, this past summer, I gained a great amount of
-              experience working with AWS products such as S3, DynamoDB, and
-              Athena while developing an app for a company (shown below).
+              studying Software Engineering. I build full-stack web apps and
+              data-driven tools, mostly in TypeScript and Python. My stack
+              usually involves Next.js, PostgreSQL, and some combination of AWS
+              services — though I&apos;m always picking up new things.
             </p>
 
             <p className="text-lg text-slate-300 leading-relaxed">
-              In my time outside of school, I enjoy building web apps and
-              exploring new technologies, but that&apos;s not my life 24/7. I am
-              a big sports guy, but basketball is my biggest passion. I have
-              played it, officiated it, watched it, and, most recently, become a
-              student manager for the Drexel Women&apos;s Basketball Team, which
-              has been an amazing experience so far.
+              Outside of code, basketball takes up a lot of my time — I&apos;ve
+              played it, officiated it as a PIAA official, and now I&apos;m a
+              student manager for the Drexel Women&apos;s Basketball Team,
+              traveling with the team to away games. It&apos;s been a great way
+              to stay connected to the game while building real relationships
+              with coaches and athletes.
             </p>
 
             <p className="text-lg text-slate-300 leading-relaxed">
-              As I am writing this, I have a couple of goals for the near
-              future. I want to increase my knowledge of Python and Machine
-              Learning so I can build a predictive model passion project.
-              Additionally, I plan on finishing my first SaaS, TBA soon, and
-              releasing it to the public.
+              Right now I&apos;m focused on getting deeper into machine learning
+              — I recently shipped an XGBoost bracket predictor with Monte Carlo
+              simulations and live odds comparison. Next up: my first SaaS
+              product. More on that soon.
             </p>
 
             <motion.div
@@ -109,17 +106,17 @@ const About = () => {
                       ,
                     </div>
                     <div className="ml-4 text-slate-300">
-                      skills:{" "}
+                      stack:{" "}
                       <span className="text-yellow-400">
-                        [&quot;Python&quot;, &quot;TypeScript&quot;,
-                        &quot;AWS&quot;]
+                        [&quot;Next.js&quot;, &quot;Python&quot;,
+                        &quot;PostgreSQL&quot;, &quot;Docker&quot;]
                       </span>
                       ,
                     </div>
                     <div className="ml-4 text-slate-300">
-                      passion:{" "}
+                      focus:{" "}
                       <span className="text-green-400">
-                        &quot;Building cool things&quot;
+                        &quot;Full-stack + ML&quot;
                       </span>
                     </div>
                     <div className="text-cyan-400">{"}"}</div>

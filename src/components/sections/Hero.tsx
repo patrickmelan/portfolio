@@ -45,9 +45,8 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}>
-            I am a student and aspiring software engineer focused on building
-            high-quality applications using modern technologies such as Python,
-            TypeScript, and AWS.
+            Software engineering student at Drexel, building full-stack web
+            apps and machine learning tools with TypeScript, Python, and AWS.
           </motion.p>
 
           {/*<motion.div
