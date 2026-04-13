@@ -168,7 +168,7 @@ export default function FlightDelayPredictor() {
 
       const result = await response.json();
       setResult(result);
-    } catch (err) {
+    } catch {
       setError("Failed to get prediction. Please try again.");
     } finally {
       setLoading(false);
@@ -377,7 +377,7 @@ export default function FlightDelayPredictor() {
                     <div className="flex justify-between">
                       <span>Precipitation:</span>
                       <span className="font-semibold text-white">
-                        {result.weather.origin.precipitation}"
+                        {result.weather.origin.precipitation}&quot;
                       </span>
                     </div>
                     <div className="flex justify-between">
@@ -409,7 +409,7 @@ export default function FlightDelayPredictor() {
                     <div className="flex justify-between">
                       <span>Precipitation:</span>
                       <span className="font-semibold text-white">
-                        {result.weather.destination.precipitation}"
+                        {result.weather.destination.precipitation}&quot;
                       </span>
                     </div>
                     <div className="flex justify-between">
