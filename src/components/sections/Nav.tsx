@@ -13,8 +13,6 @@ const Navbar = ({
     }
   };
 
-  //test comment
-
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
@@ -41,12 +39,12 @@ const Navbar = ({
               Patrick Melan
             </span>
           </motion.button>
-          {/*{ name: "Projects", id: "projects" },}
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-6">
             {[
               { name: "About Me", id: "about" },
               { name: "Experience", id: "experience" },
+              { name: "Projects", id: "projects" },
             ].map((item) => (
               <motion.button
                 key={item.id}

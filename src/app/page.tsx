@@ -6,6 +6,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Footer from "@/components/sections/BottomNav";
 import Experience from "@/components/sections/Experience";
+import Projects from "@/components/sections/Projects";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -43,6 +44,7 @@ export default function Portfolio() {
       <Hero />
       <About />
       <Experience />
+      <Projects />
       <Footer />
     </div>
   );

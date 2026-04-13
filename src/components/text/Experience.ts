@@ -1,13 +1,13 @@
 const experiences = [
   {
     title: "Software Development Intern",
-    company: "St. Lukes University Health Network",
-    period: "June, 2024 - August 2024",
+    company: "St. Luke's University Health Network",
+    period: "June 2024 - August 2024",
     type: "Internship",
     description:
-      "Assisted in building dashboards for employee/network data and relations. Gained experience in working with a team and using agile methodolgies.",
+      "Assisted in building dashboards for employee/network data and relations. Gained experience in working with a team and using agile methodologies.",
     achievements: [
-      "Programmed solutions in C#, Python, and Javascript",
+      "Programmed solutions in C#, Python, and JavaScript",
       "Built Cloud Flows & Azure Functions",
       "Used Microsoft Power BI, Power Apps, and Power Automate",
       "Built Realtime Data Dashboards",
@@ -16,7 +16,7 @@ const experiences = [
   },
   {
     title: "Cybersecurity Intern",
-    company: "St. Lukes University Health Network",
+    company: "St. Luke's University Health Network",
     period: "June 2023 - August 2023",
     type: "Internship",
     description: "sdf",

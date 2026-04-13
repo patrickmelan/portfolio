@@ -24,7 +24,7 @@ const About = () => {
             <p className="text-lg text-slate-300 leading-relaxed">
               Hello! I&apos;m Patrick Melan, a freshman at Drexel University
               passionate about business, data science, and software development.
-              I have a stroung foudation in languages such as TypeScript and
+              I have a strong foundation in languages such as TypeScript and
               Python, but I&apos;m always trying to learn more and better my
               skills. For example, this past summer, I gained a great amount of
               experience working with AWS products such as S3, DynamoDB, and
@@ -43,7 +43,7 @@ const About = () => {
             <p className="text-lg text-slate-300 leading-relaxed">
               As I am writing this, I have a couple of goals for the near
               future. I want to increase my knowledge of Python and Machine
-              Learning so I can build a predictive model passsion project.
+              Learning so I can build a predictive model passion project.
               Additionally, I plan on finishing my first SaaS, TBA soon, and
               releasing it to the public.
             </p>
