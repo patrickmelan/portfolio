@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Bracket from "./Bracket";
 import { v3BracketData } from "./bracket-data";
+import Footer from "@/components/sections/BottomNav";
 
 export default function OnionsIndex() {
   return (
@@ -253,14 +254,7 @@ def simulate_bracket(bracket, kenpom, n=10000):
         </p>
       </article>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-slate-400">
-            {new Date().getFullYear()}. Built by Patrick Melan.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

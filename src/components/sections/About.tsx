@@ -23,26 +23,27 @@ const About = () => {
             viewport={{ once: true }}>
             <p className="text-lg text-slate-300 leading-relaxed">
               Hello! I&apos;m Patrick Melan, a freshman at Drexel University
-              studying Software Engineering. I build full-stack web apps and
-              data-driven tools, mostly in TypeScript and Python. My stack
-              usually involves Next.js, PostgreSQL, and some combination of AWS
-              services — though I&apos;m always picking up new things.
+              studying Software Engineering. I enjoy building full-stack web
+              apps and useful data tools & dashboards, mostly in TypeScript and
+              Python. My stack usually involves Next.js, PostgreSQL, and some
+              combination of AWS services, but I&apos;m always trying to learn
+              new technologies.
             </p>
 
             <p className="text-lg text-slate-300 leading-relaxed">
-              Outside of code, basketball takes up a lot of my time — I&apos;ve
-              played it, officiated it as a PIAA official, and now I&apos;m a
-              student manager for the Drexel Women&apos;s Basketball Team,
-              traveling with the team to away games. It&apos;s been a great way
-              to stay connected to the game while building real relationships
-              with coaches and athletes.
+              Outside of code, basketball takes up a lot of my time, as
+              I&apos;ve played it, officiated it as a PIAA official, and now
+              I&apos;m a student manager for the Drexel Women&apos;s Basketball
+              Team, doing things from traveling with the team to away games to
+              helping record statistics at practice. It&apos;s been a great way
+              to stay connected to the game, although that&apos;s not very hard
+              when you&apos;re in the City of Basketball Love.
             </p>
 
             <p className="text-lg text-slate-300 leading-relaxed">
               Right now I&apos;m focused on getting deeper into machine learning
               — I recently shipped an XGBoost bracket predictor with Monte Carlo
-              simulations and live odds comparison. Next up: my first SaaS
-              product. More on that soon.
+              simulations and live odds comparison.
             </p>
 
             <motion.div
@@ -52,7 +53,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}>
               {[
-                { icon: MapPin, text: "Eastern PA" },
+                { icon: MapPin, text: "Philadelphia, PA" },
                 { icon: GraduationCap, text: "Software Engineering Major" },
                 { icon: Code, text: "Python, TypeScript, AWS" },
                 { icon: Mail, text: "Building full-stack apps" },

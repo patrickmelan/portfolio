@@ -11,9 +11,9 @@ const experiences = [
       "Implemented JWT authentication at the edge via Next.js middleware",
       "Configured multi-container Docker Compose deployment with Caddy reverse proxy for auto HTTPS",
       "Integrated reCAPTCHA v3 and self-hosted Umami analytics",
-      "Set up AWS Route 53 DNS and S3 image uploads for admin dashboard",
+      "Set up AWS Route 53 DNS and S3 image uploads for the admin dashboard",
     ],
-    technologies: ["Next.js 15", "PostgreSQL", "Drizzle ORM", "Docker", "AWS S3", "AWS Route 53"],
+    technologies: ["Next.js 15", "PostgreSQL", "Drizzle ORM", "Docker", "AWS S3", "AWS Route 53", "Caddy", "Umami"],
   },
   {
     title: "IT Software Development Intern",
@@ -24,7 +24,7 @@ const experiences = [
       "Worked alongside software development professionals to plan, build, test, and deploy internal tooling, with a focus on data dashboards and workflow automation.",
     achievements: [
       "Built a real-time Power BI dashboard for employee statistics across the network",
-      "Participated in Agile sprint planning and contributed to team task board",
+      "Participated in Agile sprint planning and contributed to the team task board",
       "Developed automation solutions using Power Automate and Azure Functions",
       "Gained hands-on experience with the full in-house software development lifecycle",
     ],
@@ -55,12 +55,12 @@ const experiences = [
     achievements: [
       "3.95 GPA — Dean's List, Fall & Winter Quarters",
       "Relevant coursework: Programming I & II, Computing & Informatics Design I-III, Multivariate Calculus",
-      "Active member of the Drexel AI/ML Society",
-      "Student Manager for the Women's Basketball Team — travel to away games with players and coaches",
+      "Member of the Drexel AI/ML Society",
+      "Student Manager for the Women's Basketball Team",
     ],
     technologies: ["Python", "Unix", "Git"],
-  },
-  {
+  }
+  /*{
     title: "High School Student",
     company: "Easton Area High School",
     period: "September 2021 - June 2025",
@@ -83,7 +83,7 @@ const experiences = [
       "Firebase",
       "OpenAI API",
     ],
-  },
+  },*/
 ];
 
 export default experiences;

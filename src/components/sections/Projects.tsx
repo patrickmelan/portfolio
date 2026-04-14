@@ -31,13 +31,13 @@ const Projects = () => {
               <div className="grid md:grid-cols-5 gap-0">
                 {/* Image */}
                 {project.image && (
-                  <div className="md:col-span-2 flex items-center justify-center p-8 bg-slate-800/80">
+                  <div className="md:col-span-2 flex items-center justify-center p-8 bg-slate-600/40">
                     <Image
                       src={project.image}
                       alt={project.title}
-                      width={300}
-                      height={180}
-                      className="object-contain max-h-32"
+                      width={400}
+                      height={300}
+                      className="object-contain max-h-52"
                     />
                   </div>
                 )}
@@ -72,16 +72,18 @@ const Projects = () => {
                     ))}
                   </div>
 
-                  <div className="pt-2">
-                    <motion.a
-                      href={project.demo}
-                      {...(project.demo.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
-                      whileHover={{ x: 4 }}
-                    >
-                      View Project <ExternalLink className="w-4 h-4" />
-                    </motion.a>
-                  </div>
+                  {project.demo && (
+                    <div className="pt-2">
+                      <motion.a
+                        href={project.demo}
+                        {...(project.demo.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+                        whileHover={{ x: 4 }}
+                      >
+                        View Project <ExternalLink className="w-4 h-4" />
+                      </motion.a>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
