@@ -16,6 +16,20 @@ const experiences = [
     technologies: ["Next.js 15", "PostgreSQL", "Drizzle ORM", "Docker", "AWS S3", "AWS Route 53", "Caddy", "Umami"],
   },
   {
+    title: "Freelance Software Engineer",
+    company: "Polity Inc.",
+    period: "May 2025 - Present",
+    type: "Freelance",
+    description:
+      "Built a multi-client government data review platform in React + Tailwind CSS, serving 9 municipalities through a Clerk-authenticated multi-step wizard with two core flows: field mapping and record validation.",
+    achievements: [
+      "Designed and deployed an Express REST API on AWS EC2 integrating S3 file uploads, DynamoDB batch writes, and Athena SQL queries to store and surface permit, GIS parcel, and code violation data at scale",
+      "Implemented server-side fuzzy matching with Fuse.js over paginated Athena results to detect MAT vs. GIS parcel discrepancies (addresses, owner names) across thousands of government records",
+      "Bundled the React app with custom Webpack config and deployed to S3 for embedding in Polity's Webflow site",
+    ],
+    technologies: ["React", "Tailwind CSS", "Clerk", "Node.js", "Express", "AWS S3", "AWS DynamoDB", "AWS Athena", "AWS EC2", "Fuse.js", "Webpack"],
+  },
+  {
     title: "IT Software Development Intern",
     company: "St. Luke's University Health Network",
     period: "June 2024 - August 2024",
@@ -39,9 +53,9 @@ const experiences = [
       "Rotated through Identity Access Management, Disaster Recovery, and Cybersecurity teams, gaining exposure to enterprise security operations at a major health network.",
     achievements: [
       "Wrote KQL queries in Microsoft Sentinel for cybersecurity monitoring and employee cyber safety",
-      "Learned IAM policies and procedures; assisted in onboarding and access support",
+      "Learned IAM policies and procedures; assisted in onboarding and access support/analysis",
       "Shadowed senior engineers to understand IT security architecture and incident response",
-      "Participated in cross-team daily standups covering multiple IT departments",
+      "Participated in cross-department daily standups covering multiple IT teams",
     ],
     technologies: ["KQL", "Microsoft Sentinel", "Azure AD"],
   },
