@@ -30,11 +30,6 @@ const Navbar = ({
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
             onClick={() => scrollToSection("hero")}>
-            <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center transform rotate-45">
-              <span className="text-slate-900 font-bold text-xs transform -rotate-45">
-                PM
-              </span>
-            </div>
             <span className="text-white font-semibold text-sm">
               Patrick Melan
             </span>
