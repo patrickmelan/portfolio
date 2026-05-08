@@ -36,7 +36,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}>
-              Developer. Future Founder.
+              Programmer.
             </motion.p>
           </div>
 
@@ -45,8 +45,8 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}>
-            Software engineering student at Drexel, building full-stack web
-            apps and machine learning tools with TypeScript, Python, and AWS.
+            Software engineering student at Drexel, building full-stack web apps
+            and machine learning tools with TypeScript, Python, and AWS.
           </motion.p>
 
           {/*<motion.div
