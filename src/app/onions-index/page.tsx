@@ -1,5 +1,4 @@
 import { ArrowLeft, Github } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import Bracket from "./Bracket";
 import { v3BracketData } from "./bracket-data";
@@ -81,11 +80,11 @@ export default function OnionsIndex() {
 
         <ul className="space-y-4 text-slate-700">
           <li className="flex gap-3">
-            <span className="text-brand font-mono font-bold shrink-0">
-              v1
-            </span>
+            <span className="text-brand font-mono font-bold shrink-0">v1</span>
             <span>
-              <strong className="text-slate-900">Logistic Efficiency Model</strong>{" "}
+              <strong className="text-slate-900">
+                Logistic Efficiency Model
+              </strong>{" "}
               &mdash; Uses KenPom adjusted offensive and defensive efficiency
               ratings as inputs to a logistic regression. The difference in team
               efficiencies produces a win probability for each matchup, which is
@@ -93,27 +92,23 @@ export default function OnionsIndex() {
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="text-brand font-mono font-bold shrink-0">
-              v2
-            </span>
+            <span className="text-brand font-mono font-bold shrink-0">v2</span>
             <span>
-              <strong className="text-slate-900">Efficiency Splits</strong> &mdash;
-              Breaks efficiency into offensive and defensive components rather
-              than net rating. This captures stylistic mismatches &mdash; a
-              great defense vs. a great offense plays out differently than two
+              <strong className="text-slate-900">Efficiency Splits</strong>{" "}
+              &mdash; Breaks efficiency into offensive and defensive components
+              rather than net rating. This captures stylistic mismatches &mdash;
+              a great defense vs. a great offense plays out differently than two
               average teams.
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="text-brand font-mono font-bold shrink-0">
-              v3
-            </span>
+            <span className="text-brand font-mono font-bold shrink-0">v3</span>
             <span>
-              <strong className="text-slate-900">Upset Detection</strong> &mdash;
-              Adds historical seed-matchup upset rates as a prior. If 12-seeds
-              beat 5-seeds 35% of the time historically, the model incorporates
-              that signal even when pure efficiency says otherwise. This is the
-              version shown in the bracket below.
+              <strong className="text-slate-900">Upset Detection</strong>{" "}
+              &mdash; Adds historical seed-matchup upset rates as a prior. If
+              12-seeds beat 5-seeds 35% of the time historically, the model
+              incorporates that signal even when pure efficiency says otherwise.
+              This is the version shown in the bracket below.
             </span>
           </li>
         </ul>
@@ -180,7 +175,9 @@ def simulate_bracket(bracket, kenpom, n=10000):
 
       {/* Back to narrow content */}
       <article className="max-w-3xl mx-auto px-6 py-12 space-y-8">
-        <h2 className="text-2xl font-bold text-slate-900">Key Predictions (v3)</h2>
+        <h2 className="text-2xl font-bold text-slate-900">
+          Key Predictions (v3)
+        </h2>
 
         <ul className="space-y-3 text-slate-700 text-lg leading-relaxed">
           <li>
@@ -188,9 +185,9 @@ def simulate_bracket(bracket, kenpom, n=10000):
             Arizona (1) &mdash; 55.6% win probability in the final.
           </li>
           <li>
-            <strong className="text-slate-900">Final Four:</strong> Duke, Florida,
-            Arizona, Michigan &mdash; all four 1-seeds make it in v3 as well,
-            but with more upset variance along the way.
+            <strong className="text-slate-900">Final Four:</strong> Duke,
+            Florida, Arizona, Michigan &mdash; all four 1-seeds make it in v3 as
+            well, but with more upset variance along the way.
           </li>
           <li>
             <strong className="text-slate-900">Closest game:</strong> Arizona
@@ -198,9 +195,9 @@ def simulate_bracket(bracket, kenpom, n=10000):
             flip.
           </li>
           <li>
-            <strong className="text-slate-900">Notable upset picks:</strong> Texas
-            (11) over BYU (6), Saint Louis (9) over Georgia (8), Tennessee (6)
-            over Virginia (3), and Texas Tech (5) over Alabama (4).
+            <strong className="text-slate-900">Notable upset picks:</strong>{" "}
+            Texas (11) over BYU (6), Saint Louis (9) over Georgia (8), Tennessee
+            (6) over Virginia (3), and Texas Tech (5) over Alabama (4).
           </li>
         </ul>
 
