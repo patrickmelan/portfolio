@@ -33,8 +33,8 @@ export default function TimerPage() {
   const remainingDays = days % 365;
 
   return (
-    <main className="min-h-screen bg-slate-900 text-cyan-400 flex flex-col items-center justify-center gap-8 px-4">
-      <p className="text-cyan-600 text-sm tracking-widest uppercase">
+    <main className="min-h-screen bg-white text-brand flex flex-col items-center justify-center gap-8 px-4">
+      <p className="text-slate-400 text-sm tracking-widest uppercase">
         247,000,000 seconds
       </p>
 
@@ -46,11 +46,11 @@ export default function TimerPage() {
         <Unit value={seconds} label="sec" />
       </div>
 
-      <p className="text-cyan-700 text-xs">
+      <p className="text-slate-400 text-xs">
         ends {new Date(TARGET_MS).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
       </p>
 
-      <p className="text-cyan-800 text-xs tabular-nums">
+      <p className="text-slate-300 text-xs tabular-nums">
         {pad(totalSecs)} seconds remaining
       </p>
     </main>
@@ -63,7 +63,7 @@ function Unit({ value, label }: { value: number; label: string }) {
       <span className="text-5xl font-mono font-bold tabular-nums">
         {String(value).padStart(2, "0")}
       </span>
-      <span className="text-cyan-600 text-xs tracking-widest uppercase">{label}</span>
+      <span className="text-slate-400 text-xs tracking-widest uppercase">{label}</span>
     </div>
   );
 }

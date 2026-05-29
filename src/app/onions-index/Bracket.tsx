@@ -27,13 +27,13 @@ function MatchupCard({
       ? "border-red-500/60"
       : matchup.upset && mode === "prediction"
         ? "border-yellow-500/40"
-        : "border-slate-600";
+        : "border-slate-300";
 
   const bgColor = isCorrect
-    ? "bg-green-950/30"
+    ? "bg-green-50"
     : isIncorrect
-      ? "bg-red-950/30"
-      : "bg-slate-800/60";
+      ? "bg-red-50"
+      : "bg-slate-100";
 
   function TeamRow({
     name,
@@ -45,20 +45,20 @@ function MatchupCard({
     isPick: boolean;
   }) {
     const isActualWinner = hasResult && matchup.actual === name;
-    let cls = "text-slate-300";
+    let cls = "text-slate-700";
     if (mode === "actual") {
-      if (isActualWinner) cls = "text-green-300 font-semibold";
-      else if (hasResult) cls = "text-slate-500 line-through";
+      if (isActualWinner) cls = "text-green-700 font-semibold";
+      else if (hasResult) cls = "text-slate-400 line-through";
     } else {
-      if (hasResult && isActualWinner) cls = "text-green-300 font-semibold";
+      if (hasResult && isActualWinner) cls = "text-green-700 font-semibold";
       else if (hasResult && !isActualWinner)
-        cls = "text-slate-500 line-through";
-      else if (isPick) cls = "text-cyan-300 font-semibold";
+        cls = "text-slate-400 line-through";
+      else if (isPick) cls = "text-brand font-semibold";
     }
     return (
       <div
         className={`flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] leading-tight ${cls}`}>
-        <span className="text-slate-500 w-5 text-right shrink-0">({seed})</span>
+        <span className="text-slate-400 w-5 text-right shrink-0">({seed})</span>
         <span className="truncate">{name}</span>
       </div>
     );
@@ -80,19 +80,19 @@ function MatchupCard({
       {(hasPrediction || hasResult) && (
         <div className="flex items-center justify-between mt-0.5 px-1.5">
           {mode === "prediction" && hasPrediction ? (
-            <span className="text-[9px] text-slate-500 font-mono truncate">
+            <span className="text-[9px] text-slate-400 font-mono truncate">
               {matchup.predicted} {matchup.probability}%{matchup.upset && " ⚠️"}
             </span>
           ) : (
-            <span className="text-[9px] text-slate-500 font-mono truncate">
+            <span className="text-[9px] text-slate-400 font-mono truncate">
               {matchup.actual ?? "—"}
             </span>
           )}
           {isCorrect && (
-            <span className="text-green-400 text-[9px]">&#10003;</span>
+            <span className="text-green-500 text-[9px]">&#10003;</span>
           )}
           {isIncorrect && (
-            <span className="text-red-400 text-[9px]">&#10007;</span>
+            <span className="text-red-500 text-[9px]">&#10007;</span>
           )}
         </div>
       )}
@@ -114,7 +114,7 @@ function RoundColumn({
   if (matchups.length === 0) return null;
   return (
     <div className="flex flex-col items-center min-w-[130px]">
-      <h4 className="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-2">
+      <h4 className="text-[9px] font-mono text-slate-400 uppercase tracking-wider mb-2">
         {roundName}
       </h4>
       <div className="flex flex-col gap-1.5 justify-around flex-1">
@@ -146,7 +146,7 @@ function RegionStrip({
 
   return (
     <div className="space-y-2">
-      <h3 className="text-xs font-bold text-cyan-400 font-mono tracking-wide">
+      <h3 className="text-xs font-bold text-brand font-mono tracking-wide">
         {region.name}
       </h3>
       <div
@@ -192,41 +192,41 @@ export default function Bracket({
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
       className="space-y-6">
-      <h2 className="text-xl font-bold text-white">{title}</h2>
+      <h2 className="text-xl font-bold text-slate-900">{title}</h2>
 
       {/* Legend */}
-      <div className="flex flex-wrap gap-3 text-[10px] font-mono text-slate-400">
+      <div className="flex flex-wrap gap-3 text-[10px] font-mono text-slate-500">
         {mode === "prediction" && (
           <>
             <span className="flex items-center gap-1.5">
-              <span className="text-cyan-300">Cyan</span> = Model pick
+              <span className="text-brand">Navy</span> = Model pick
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded border border-yellow-500/40 bg-slate-800/60 inline-block" />
+              <span className="w-2.5 h-2.5 rounded border border-yellow-500/40 bg-slate-100 inline-block" />
               Upset pick
             </span>
           </>
         )}
         <span className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded border border-green-500/60 bg-green-950/30 inline-block" />
+          <span className="w-2.5 h-2.5 rounded border border-green-500/60 bg-green-50 inline-block" />
           Correct
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded border border-red-500/60 bg-red-950/30 inline-block" />
+          <span className="w-2.5 h-2.5 rounded border border-red-500/60 bg-red-50 inline-block" />
           Incorrect
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded border border-slate-600 bg-slate-800/60 inline-block" />
+          <span className="w-2.5 h-2.5 rounded border border-slate-300 bg-slate-100 inline-block" />
           Not yet played
         </span>
       </div>
 
       {/* ── Top: East (LTR) + West (RTL) ── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-slate-800/30 rounded-xl border border-slate-700/50 p-3 overflow-x-auto lg:overflow-x-visible">
+        <div className="bg-slate-50 rounded-xl border border-slate-200 p-3 overflow-x-auto lg:overflow-x-visible">
           <RegionStrip region={east} direction="ltr" mode={mode} />
         </div>
-        <div className="bg-slate-800/30 rounded-xl border border-slate-700/50 p-3 overflow-x-auto lg:overflow-x-visible">
+        <div className="bg-slate-50 rounded-xl border border-slate-200 p-3 overflow-x-auto lg:overflow-x-visible">
           <RegionStrip region={west} direction="rtl" mode={mode} />
         </div>
       </div>
@@ -234,8 +234,8 @@ export default function Bracket({
       {/* ── Final Four semifinal 1 (East vs South) ── */}
       {hasFinalFour && (
         <div className="flex justify-center">
-          <div className="bg-slate-800/30 rounded-xl border border-cyan-500/20 p-3">
-            <h4 className="text-[9px] font-mono text-slate-500 uppercase tracking-wider text-center mb-2">
+          <div className="bg-slate-50 rounded-xl border border-brand/20 p-3">
+            <h4 className="text-[9px] font-mono text-slate-400 uppercase tracking-wider text-center mb-2">
               Semifinal — {data.finalFour[0].team1.name} vs{" "}
               {data.finalFour[0].team2.name}
             </h4>
@@ -249,8 +249,8 @@ export default function Bracket({
       {/* ── Championship ── */}
       {hasChampionship && (
         <div className="flex justify-center items-center gap-4">
-          <div className="bg-slate-800/30 rounded-xl border border-cyan-500/40 p-4">
-            <h4 className="text-[9px] font-mono text-cyan-400 uppercase tracking-wider text-center mb-2">
+          <div className="bg-slate-50 rounded-xl border border-brand/40 p-4">
+            <h4 className="text-[9px] font-mono text-brand uppercase tracking-wider text-center mb-2">
               Championship
             </h4>
             <div className="flex justify-center">
@@ -264,7 +264,7 @@ export default function Bracket({
                   width={48}
                   height={48}
                 />
-                <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-wider">
+                <span className="text-[10px] font-mono text-brand uppercase tracking-wider">
                   Champion
                 </span>
               </div>
@@ -276,8 +276,8 @@ export default function Bracket({
       {/* ── Final Four semifinal 2 (West vs Midwest) ── */}
       {hasFinalFour && data.finalFour.length > 1 && (
         <div className="flex justify-center">
-          <div className="bg-slate-800/30 rounded-xl border border-cyan-500/20 p-3">
-            <h4 className="text-[9px] font-mono text-slate-500 uppercase tracking-wider text-center mb-2">
+          <div className="bg-slate-50 rounded-xl border border-brand/20 p-3">
+            <h4 className="text-[9px] font-mono text-slate-400 uppercase tracking-wider text-center mb-2">
               Semifinal — {data.finalFour[1].team1.name} vs{" "}
               {data.finalFour[1].team2.name}
             </h4>
@@ -290,10 +290,10 @@ export default function Bracket({
 
       {/* ── Bottom: Midwest (LTR) + South (RTL) ── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-slate-800/30 rounded-xl border border-slate-700/50 p-3 overflow-x-auto lg:overflow-x-visible">
+        <div className="bg-slate-50 rounded-xl border border-slate-200 p-3 overflow-x-auto lg:overflow-x-visible">
           <RegionStrip region={south} direction="ltr" mode={mode} />
         </div>
-        <div className="bg-slate-800/30 rounded-xl border border-slate-700/50 p-3 overflow-x-auto lg:overflow-x-visible">
+        <div className="bg-slate-50 rounded-xl border border-slate-200 p-3 overflow-x-auto lg:overflow-x-visible">
           <RegionStrip region={midwest} direction="rtl" mode={mode} />
         </div>
       </div>

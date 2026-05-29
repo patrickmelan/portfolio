@@ -1,21 +1,5 @@
 const experiences = [
   {
-    title: "Freelance Full-Stack Developer",
-    company: "Easton Flipped, LLC",
-    period: "February 2026 - Present",
-    type: "Freelance",
-    description:
-      "Built and deployed a full-stack real estate platform for a local property flipping business, handling everything from infrastructure to authentication.",
-    achievements: [
-      "Built a full-stack platform with Next.js 15 and PostgreSQL via Drizzle ORM",
-      "Implemented JWT authentication at the edge via Next.js middleware",
-      "Configured multi-container Docker Compose deployment with Caddy reverse proxy for auto HTTPS",
-      "Integrated reCAPTCHA v3 and self-hosted Umami analytics",
-      "Set up AWS Route 53 DNS and S3 image uploads for the admin dashboard",
-    ],
-    technologies: ["Next.js 15", "PostgreSQL", "Drizzle ORM", "Docker", "AWS S3", "AWS Route 53", "Caddy", "Umami"],
-  },
-  {
     title: "Freelance Software Engineer",
     company: "Polity Inc.",
     period: "May 2025 - Present",
@@ -28,6 +12,22 @@ const experiences = [
       "Bundled the React app with custom Webpack config and deployed to S3 for embedding in Polity's Webflow site",
     ],
     technologies: ["React", "Tailwind CSS", "Clerk", "Node.js", "Express", "AWS S3", "AWS DynamoDB", "AWS Athena", "AWS EC2", "Fuse.js", "Webpack"],
+  },
+  {
+    title: "Freelance Full-Stack Developer/Designer",
+    company: "Easton Flipped, LLC",
+    period: "February 2026 - April 2026",
+    type: "Freelance",
+    description:
+      "Built and deployed a full-stack real estate platform for a local property flipping business, handling everything from infrastructure to authentication.",
+    achievements: [
+      "Built a full-stack platform with Next.js 15 and PostgreSQL via Drizzle ORM",
+      "Implemented JWT authentication at the edge via Next.js middleware",
+      "Configured multi-container Docker Compose deployment with Caddy reverse proxy for auto HTTPS",
+      "Integrated reCAPTCHA v3 and self-hosted Umami analytics",
+      "Set up AWS Route 53 DNS and S3 image uploads for the admin dashboard",
+    ],
+    technologies: ["Next.js 15", "PostgreSQL", "Drizzle ORM", "Docker", "AWS S3", "AWS Route 53", "Caddy", "Umami"],
   },
   {
     title: "IT Software Development Intern",

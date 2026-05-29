@@ -36,7 +36,7 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-white text-slate-900">
       <Navbar
         activeSection={activeSection}
         setActiveSection={setActiveSection}

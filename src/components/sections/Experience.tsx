@@ -21,15 +21,14 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-20 px-6 bg-slate-800/30">
+    <section id="experience" className="py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-4xl md:text-5xl font-bold text-cyan-400 mb-16 text-center"
+          className="text-4xl md:text-5xl font-bold text-brand mb-16 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+          viewport={{ once: true }}>
           Relevant Experience
         </motion.h2>
 
@@ -40,22 +39,18 @@ const Experience = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             {experiences.map((exp, index) => {
               const IconComponent = getExperienceIcon(exp.type);
               return (
                 <motion.button
                   key={index}
                   onClick={() => setActiveExperience(index)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all duration-300 ${
+                  className={`hover:cursor-pointer w-full text-left p-4 rounded-xl border transition-all duration-300 ${
                     activeExperience === index
-                      ? "bg-cyan-500/10 border-cyan-500 text-cyan-400"
-                      : "bg-slate-800/50 border-slate-700 text-slate-300 hover:border-cyan-500/50"
-                  }`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
+                      ? "bg-brand/10 border-brand text-brand"
+                      : "bg-slate-50 border-slate-200 text-slate-700 hover:border-brand"
+                  }`}>
                   <div className="flex items-center space-x-3">
                     <IconComponent className="w-5 h-5" />
                     <div>
@@ -74,8 +69,7 @@ const Experience = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeExperience}
@@ -83,35 +77,33 @@ const Experience = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700"
-              >
+                className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
                 <div className="space-y-6">
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-2xl font-bold text-white">
+                      <h3 className="text-2xl font-bold text-slate-900">
                         {experiences[activeExperience].title}
                       </h3>
                       <Badge
                         variant="outline"
-                        className="border-cyan-500 text-cyan-400"
-                      >
+                        className="border-brand text-brand">
                         {experiences[activeExperience].type}
                       </Badge>
                     </div>
-                    <p className="text-lg text-cyan-400 font-semibold">
+                    <p className="text-lg text-brand font-semibold">
                       {experiences[activeExperience].company}
                     </p>
-                    <p className="text-slate-400 font-mono">
+                    <p className="text-slate-500 font-mono">
                       {experiences[activeExperience].period}
                     </p>
                   </div>
 
-                  <p className="text-slate-300 leading-relaxed">
+                  <p className="text-slate-700 leading-relaxed">
                     {experiences[activeExperience].description}
                   </p>
 
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-3">
+                    <h4 className="text-lg font-semibold text-slate-900 mb-3">
                       Key Achievements
                     </h4>
                     <ul className="space-y-2">
@@ -122,18 +114,17 @@ const Experience = () => {
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.3, delay: index * 0.1 }}
-                            className="flex items-center space-x-2 text-slate-300"
-                          >
-                            <span className="text-cyan-400 mt-1">•</span>
+                            className="flex items-center space-x-2 text-slate-700">
+                            <span className="text-brand mt-1">•</span>
                             <span className="pt-1">{achievement}</span>
                           </motion.li>
-                        )
+                        ),
                       )}
                     </ul>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-3">
+                    <h4 className="text-lg font-semibold text-slate-900 mb-3">
                       Technologies Used
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -143,16 +134,14 @@ const Experience = () => {
                             key={tech}
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.3, delay: index * 0.05 }}
-                          >
+                            transition={{ duration: 0.3, delay: index * 0.05 }}>
                             <Badge
                               variant="secondary"
-                              className="bg-slate-700 text-slate-300"
-                            >
+                              className="bg-slate-200 text-slate-700">
                               {tech}
                             </Badge>
                           </motion.div>
-                        )
+                        ),
                       )}
                     </div>
                   </div>

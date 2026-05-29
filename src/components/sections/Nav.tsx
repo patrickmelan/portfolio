@@ -20,17 +20,13 @@ const Navbar = ({
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="fixed top-6 left-0 right-0 z-50 flex justify-center">
       <motion.div
-        className="bg-slate-800/80 backdrop-blur-xl border border-slate-700/50 rounded-full px-8 py-4 shadow-2xl"
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.2 }}>
+        className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-full px-8 py-4 shadow-lg">
         <div className="flex items-center space-x-8">
           {/* Logo/Name */}
           <motion.button
             className="hover:cursor-pointer flex items-center space-x-3"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
             onClick={() => scrollToSection("hero")}>
-            <span className="text-white font-semibold text-sm">
+            <span className="text-slate-900 font-semibold text-sm">
               Patrick Melan
             </span>
           </motion.button>
@@ -46,15 +42,13 @@ const Navbar = ({
                 onClick={() => scrollToSection(item.id)}
                 className={`hover:cursor-pointer text-sm font-medium transition-colors duration-200 relative ${
                   activeSection === item.id
-                    ? "text-cyan-400"
-                    : "text-slate-300 hover:text-cyan-400"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}>
+                    ? "text-brand"
+                    : "text-slate-500 hover:text-brand"
+                }`}>
                 {item.name}
                 {activeSection === item.id && (
                   <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand rounded-full"
                     layoutId="activeIndicator"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
