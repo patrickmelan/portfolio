@@ -1,28 +1,45 @@
 const projects = [
   {                                                                                                                 
+    title: "GovToKnow",     
+    description: "Next.js landing site and React admin/client portals built for GovToKnow, along with FastAPI backend, Stripe integration, and custom, embeddable chat widget for municipal websites.",
+    image: "/govtoknow.png",
+    technologies: ["Next.js", "React", "TypeScript", "FastAPI", "SQLModel", "Stripe", "Docker", "AWS EC2", "nginx", "GitHub Actions"],
+    demo: "https://govtoknow.com/",
+  },
+  {                                                                                                                 
+    title: "POLITY Website",     
+    description: "Next.js website for POLITY Inc., including full SEO implementation, scroll animations, and static generation.",
+    image: "/polity.png",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "Nodemailer", "reCAPTCHA", "AWS Amplify"],
+    demo: "https://www.polityinc.com/",
+  },
+  /*{
     title: "NCAA ML Bracket Predictor",     
     description: "XGBoost model trained on Kaggle NCAA tournament data augmented with Torvik adjusted efficiency ratings to predict game outcomes. Runs 10,000 Monte Carlo simulations of the 68-team bracket to generate per-team round-by-round advancement probabilities, then surfaces results in a Next.js frontend with live betting line      comparison via the Odds API.",                                                                                    
     image: "/final_four.png",
     technologies: ["Python", "XGBoost", "pandas", "NumPy", "Next.js", "React", "Tailwind CSS", "TypeScript"],
-    demo: "/onions-index",
-    category: "Data Science"
-  },
+    demo: "https://github.com/patrickmelan/Onions-Basketball-Index",
+  },*/
   {                                                                                                                 
-    title: "Easton Flipped",
-    description: "Full-stack real estate platform for a property renovation business, built with Next.js 15 and PostgreSQL via Drizzle ORM. JWT authentication is enforced at the Edge via Next.js middleware, protecting an admin dashboard for managing property listings with S3 image uploads and four distinct contact form flows (sell/buy/general/quick) with reCAPTCHA v3. Deployed as a multi-container Docker Compose stack with Caddy (auto HTTPS), self-hosted Umami analytics, and DNS via AWS Route 53.",
-    image: "/eastonflipped.png",
-    technologies: ["Next.js 15", "PostgreSQL", "Drizzle ORM", "AWS S3", "Docker", "Tailwind CSS", "Caddy", "Umami Analytics"],
-    demo: "https://eastonflipped.com",                                                                            
-    category: "Client Work"
+    title: "Easton Flipped Website + Dashboard",
+    description: "Full-stack (containerized) real estate platform for a local house-flipping business. Client-facing frontend is built using Next.js and Tailwind, pulling live property data, inputted on the admin dashboard, from the PostgreSQL DB through the custom API.",
+    image: "/EastonFlippedImg.png",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Drizzle ORM", "PostgreSQL", "AWS S3", "Recharts"],
+    demo: "https://eastonflipped.com",
   },
-  {                                                                                                                                                              
-    title: "Polity Data Request Form",                                                                                                                           
-    description: "Full-stack multi-municipality data review platform built for Polity Inc., a government data consulting company. Clients authenticate via Clerk and  walk through guided workflows to either map and request specific data fields or validate existing government records (permits, code violations, GIS parcels) before a data migration. An Express API on EC2 backs AWS Athena SQL queries over S3-stored data and fuzzy-matches MAT vs. GIS parcel records with Fuse.js,     surfacing discrepancies in a multi-step React wizard.",                                                                                                        
-    image: "https://cdn.prod.website-files.com/689a291b8f338acb6e4aed69/689a291b8f338acb6e4aed7c_logo.svg",                                                      
-    technologies: ["React", "Tailwind CSS", "Clerk", "Node.js", "Express", "AWS S3", "AWS DynamoDB", "AWS Athena", "AWS EC2", "Fuse.js", "PapaParse"],           
-    demo: "",                                                                                                                          
-    category: "Client Work",                                                                                                                                     
-  } 
+  {
+    title: "Parent Compass Coaching Website",
+    description: "Next.js website for a local parent coaching business with SMTP configured using Resend.",
+    image: "/ParentCompass.png",
+    technologies: ["Next.js", "Resend", "TailwindCSS"],
+    demo: "https://www.parentcompasscoaching.com/",
+  },
+  {
+    title: "POLITY Data Request Form",
+    description: "Full-stack multi-municipality data review platform built for POLITY Inc. Custom Express API fuzzy-matches MAT and GIS parcel records, allowing users to resolve discrepancies in the multi-step React wizard.",
+    image: "/PolityForm.png",
+    technologies: ["React", "Tailwind CSS", "Clerk", "Node.js", "Express", "AWS S3", "AWS DynamoDB", "AWS Athena", "AWS EC2", "Fuse.js", "PapaParse"], 
+  }
 ];
 
 export default projects;

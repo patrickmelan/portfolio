@@ -6,6 +6,10 @@
 @theme {
   --color-brand: #1e3a8a;
   --color-brand-dark: #152a6e;
+  /* Deep navy page background + teal accent (from the logo) */
+  --color-navy: #0b1b3f;
+  --color-navy-dark: #081431;
+  --color-accent: #3ec8c4;
 }
 
 @theme inline {

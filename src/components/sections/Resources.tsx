@@ -3,16 +3,17 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import experiences from "../text/Experience";
+import Image from "next/image";
+import resources from "../text/Resources";
 import SectionHeading from "./SectionHeading";
 
-const Experience = () => {
+const Resources = () => {
   return (
-    <section id="experience" className="mb-24 scroll-mt-24">
-      <SectionHeading title="Experience" />
+    <section id="resources" className="mb-24 scroll-mt-24">
+      <SectionHeading title="Resources" />
 
       <div className="group/list">
-        {experiences.map((exp, index) => (
+        {resources.map((resource, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 30 }}
@@ -24,43 +25,53 @@ const Experience = () => {
             <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-xl transition lg:-inset-x-6 lg:block lg:group-hover/item:bg-white/5 lg:group-hover/item:shadow-sm" />
 
             {/* Stretched link — makes the whole card clickable */}
-            {exp.link && (
+            {resource.link && (
               <a
-                href={exp.link}
+                href={resource.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${exp.title} · ${exp.company} (opens in a new tab)`}
+                aria-label={`${resource.title} — ${resource.source} (opens in a new tab)`}
                 className="absolute -inset-x-4 -inset-y-4 z-20 rounded-xl lg:-inset-x-6"
               />
             )}
 
-            {/* Period */}
-            <p className="relative z-10 mb-2 mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400 sm:col-span-4">
-              {exp.period}
-            </p>
+            {/* Image */}
+            <div className="relative z-10 mb-3 sm:col-span-4 sm:mb-0 sm:mt-1">
+              {resource.image && (
+                <div className="aspect-video overflow-hidden rounded-lg border border-white/10 bg-white/5">
+                  <Image
+                    src={resource.image}
+                    alt={resource.title}
+                    width={300}
+                    height={180}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              )}
+            </div>
 
             {/* Content */}
             <div className="relative z-10 sm:col-span-8">
               <h3 className="font-medium leading-snug">
                 <span className="inline-flex items-baseline gap-1 text-accent transition-colors group-hover/item:text-white">
                   <span>
-                    {exp.title} · {exp.company}
+                    {resource.title} · {resource.source}
                   </span>
-                  {exp.link && (
+                  {resource.link && (
                     <ArrowUpRight className="h-4 w-4 shrink-0 translate-y-0.5 transition-transform group-hover/item:-translate-y-0.5 group-hover/item:translate-x-0.5" />
                   )}
                 </span>
               </h3>
 
               <p className="mt-2 text-sm leading-relaxed text-slate-400">
-                {exp.description}
+                {resource.description}
               </p>
 
               <ul className="mt-4 flex flex-wrap gap-1.5">
-                {exp.technologies.map((tech) => (
-                  <li key={tech}>
+                {resource.tags.map((tag) => (
+                  <li key={tag}>
                     <Badge className="rounded-full border-none bg-accent/10 font-medium text-accent hover:bg-accent/20">
-                      {tech}
+                      {tag}
                     </Badge>
                   </li>
                 ))}
@@ -73,4 +84,4 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default Resources;

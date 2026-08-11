@@ -1,51 +1,23 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import Navbar from "@/components/sections/Nav";
-import Hero from "@/components/sections/Hero";
+import Header from "@/components/sections/Header";
 import About from "@/components/sections/About";
 import Footer from "@/components/sections/BottomNav";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
+import SideRail from "@/components/SideRail";
+import Resources from "@/components/sections/Resources";
 
 export default function Portfolio() {
-  const [activeSection, setActiveSection] = useState("hero");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["hero", "about", "projects", "experience", "contact"];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-white text-slate-900">
-      <Navbar
-        activeSection={activeSection}
-        setActiveSection={setActiveSection}
-      />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Footer />
+    <div className="relative min-h-screen bg-navy text-slate-300">
+      <SideRail />
+      <div className="relative z-10 mx-auto max-w-3xl px-6 py-16 sm:py-24">
+        <Header />
+        <About />
+        <Experience />
+        <Projects />
+        <Resources />
+        <Footer />
+      </div>
     </div>
   );
 }
