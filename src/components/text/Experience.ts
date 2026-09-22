@@ -1,11 +1,11 @@
 const experiences = [
   {
-    title: "Founding AI Engineer",
+    title: "AI Engineering Intern",
     company: "GovToKnow",
     link: "https://www.govtoknow.com/",
-    period: "May 2026 - Present",
+    period: "May 2026 - September 2026",
     description:
-      "Rebuilt the company’s landing site in Next.js with a cleaner UI and better SEO, which increased active users and engagement by 69.7% and 46.4%, respectively. Built an in-chat records request payment system with FastAPI, SQLModel, and a custom React widget, using Stripe manual-capture holds, ID upload verification, and an admin approval/denial portal, gating sensitive data behind a human layer. Built the admin and client-portal UIs in React and TypeScript using shadcn/ui, set up CI/CD for the Dockerized app on AWS EC2, and led incident response when we had a production outage.",
+      "Rebuilt the landing site in Next.js, increasing active users by 69.7% and engagement by 46.4%. Shipped an in-chat record request payment system (FastAPI, React, Stripe) with ID verification and a staff approval workflow for sensitive data. Built the admin and client-portal UIs in React and TypeScript, automated CI/CD and deployment on AWS EC2, and led incident response on a production outage (Atlassian Statuspage).",
     technologies: ["Next.js", "React", "TypeScript", "FastAPI", "SQLModel", "Stripe", "Docker", "AWS EC2", "nginx", "GitHub Actions"],
   },
   {

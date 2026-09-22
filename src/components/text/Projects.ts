@@ -1,7 +1,7 @@
 const projects = [
   {                                                                                                                 
     title: "GovToKnow",     
-    description: "Next.js landing site and React admin/client portals built for GovToKnow, along with FastAPI backend, Stripe integration, and custom, embeddable chat widget for municipal websites.",
+    description: "Next.js landing site and React admin/client portals built for GovToKnow, along with a FastAPI backend, Stripe integration, and a custom, embeddable chat widget for municipal websites.",
     image: "/govtoknow.png",
     technologies: ["Next.js", "React", "TypeScript", "FastAPI", "SQLModel", "Stripe", "Docker", "AWS EC2", "nginx", "GitHub Actions"],
     demo: "https://govtoknow.com/",
