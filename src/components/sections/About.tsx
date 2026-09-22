@@ -17,9 +17,9 @@ const About = () => {
         <p className="leading-relaxed text-slate-300">
           Hello! My name is Patrick Melan, and I&apos;m a sophomore at Drexel
           University in the process of obtaining my B.S. in Software Engineering
-          with a minor in Finance. I enjoy building full-stack web apps and
-          useful data tools &amp; dashboards, mostly in TypeScript and Python.
-          My stack usually involves Next.js, Python, and some combination of AWS
+          with a minor in Law. I enjoy building full-stack web apps and useful
+          data tools &amp; dashboards, mostly in TypeScript and Python. My stack
+          usually involves Next.js, Python, and some combination of AWS
           services, but I&apos;m always pushing myself to learn new
           technologies.
         </p>
@@ -27,8 +27,8 @@ const About = () => {
         <p className="leading-relaxed text-slate-300">
           Outside of code, basketball takes up a lot of my time. I&apos;m a PIAA
           basketball official, officiating varsity games throughout the Lehigh
-          Valley and Philadelphia, and a student manager for the Drexel
-          Women&apos;s Basketball team.
+          Valley, and a student manager for the Drexel Women&apos;s Basketball
+          team.
         </p>
 
         <p className="leading-relaxed text-slate-300">
