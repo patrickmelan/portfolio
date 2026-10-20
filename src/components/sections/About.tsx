@@ -36,10 +36,11 @@ const About = () => {
           time on building GovToKnow, a government technology platform, learning
           the fundamentals of building RAG (Retrieval-Augmented Generation)
           applications, and exploring the world of AI and LLMs at a deeper
-          level. I&apos;ve also been working on a larger personal project,
-          RefChat (unreleased), which is another RAG application, built on NBA
-          and NCAA basketball rulebooks, allowing users, such as fans and
-          officials, to interact with the rules in a simpler, more readable way.
+          level. I&apos;ve also been building a larger personal project,
+          RefChat, which is another RAG application, built on NBA and NCAA
+          basketball rulebooks, allowing users, such as fans and officials, to
+          interact with the rules in a simpler, more readable way. It&apos;s
+          live now, and I&apos;m still actively improving it.
         </p>
       </motion.div>
     </section>

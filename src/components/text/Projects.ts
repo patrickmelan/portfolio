@@ -1,5 +1,13 @@
 const projects = [
   {
+    title: "RefChat",
+    status: "Actively updating",
+    description: "Rules assistant for basketball officials. Ask a question and get an answer cited to the exact rule and section in the NBA or NCAA rulebook, plus real calls from the NBA's Last Two Minute reports when they apply. A Python retrieval service embeds the question, searches MongoDB Atlas Vector Search, and reranks the results with a cross-encoder before Claude writes the answer. Also has a quiz mode and a personal study dashboard.",
+    image: "/refchat.png",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Clerk", "Claude API", "MongoDB Atlas Vector Search", "Python", "FastAPI", "sentence-transformers", "Docker", "Railway", "Vercel"],
+    demo: "https://refchat.vercel.app",
+  },
+  {
     title: "electionpete",
     description: "Public election data site for Northampton County, PA. It brings the county's own datasets into one place: precinct-level results for six elections, the state voter file rolled up into counts by district, and campaign finance filings, which I ran through OCR to pull out who gave money and where it went. FastAPI and Chart.js on the front, with small counts hidden and no street addresses shown.",
     image: "/electionpete.png",
