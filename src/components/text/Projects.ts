@@ -1,7 +1,7 @@
 const projects = [
   {
     title: "electionpete",
-    description: "Public election data site for Northampton County, PA. I scraped precinct-level results for six elections, rolled the state voter file up into counts by district, and ran a thousand-plus scanned campaign finance PDFs through OCR to pull out who gave money and where it went. FastAPI and Chart.js on the front, with small counts hidden and no street addresses shown.",
+    description: "Public election data site for Northampton County, PA. It brings the county's own datasets into one place: precinct-level results for six elections, the state voter file rolled up into counts by district, and campaign finance filings, which I ran through OCR to pull out who gave money and where it went. FastAPI and Chart.js on the front, with small counts hidden and no street addresses shown.",
     image: "/electionpete.png",
     technologies: ["Python", "FastAPI", "Jinja", "Chart.js", "SQLAlchemy", "SQLite", "pandas", "AWS Textract", "AWS S3", "AWS Lightsail", "GitHub Actions"],
     demo: "https://electionpete.com",
