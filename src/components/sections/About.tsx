@@ -15,7 +15,7 @@ const About = () => {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}>
         <p className="leading-relaxed text-slate-300">
-          Hello! My name is Patrick Melan, and I&apos;m a sophomore at Drexel
+          My name is Patrick Melan, and I&apos;m a sophomore at Drexel
           University in the process of obtaining my B.S. in Software Engineering
           with a minor in Law. I enjoy building full-stack web apps and useful
           data tools &amp; dashboards, mostly in TypeScript and Python. My stack
