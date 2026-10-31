@@ -63,7 +63,7 @@ export default function DistrictTable({ districts, live }: { districts: District
       </div>
       <div className="max-h-[32rem] overflow-auto rounded-lg border border-white/10">
         <table className="w-full min-w-[640px] text-sm tabular-nums">
-          <thead className="sticky top-0 bg-navy-dark text-xs uppercase tracking-wider text-slate-400">
+          <thead className="sticky top-0 bg-navy-dark text-xs text-slate-400">
             <tr>
               {th("id", "District")}
               <th className="px-2 py-2 text-right font-medium">Inc.</th>

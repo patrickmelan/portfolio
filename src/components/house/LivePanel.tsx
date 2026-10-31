@@ -1,6 +1,5 @@
 "use client";
 
-import SectionHeading from "@/components/sections/SectionHeading";
 import { DEM, pct } from "./colors";
 import type { District, LiveState } from "./types";
 
@@ -22,11 +21,11 @@ export default function LivePanel({ live, districts }: { live: LiveState; distri
     .slice(0, 8);
 
   return (
-    <section className="mb-16">
-      <SectionHeading title="Tonight" />
-      <p className="mb-4 font-mono text-xs text-slate-400">
-        {live.nCalled} of 435 called ({live.calledDem} D, {live.nCalled - live.calledDem} R) · results are running{" "}
-        {Math.abs(live.natShift).toFixed(1)} pts {live.natShift >= 0 ? "better for Democrats" : "better for Republicans"} than forecast
+    <section className="mb-24">
+      <h2 className="text-2xl font-semibold tracking-tight text-white">Tonight</h2>
+      <p className="mb-8 mt-2 text-slate-400">
+        {live.nCalled} of 435 races called ({live.calledDem} Democratic, {live.nCalled - live.calledDem} Republican). Results so far are running{" "}
+        {Math.abs(live.natShift).toFixed(1)} pts {live.natShift >= 0 ? "better for Democrats" : "better for Republicans"} than the forecast expected.
       </p>
       <div className="grid gap-6 lg:grid-cols-2">
         <Timeline history={live.history} />
@@ -79,14 +78,14 @@ function Timeline({ history }: { history: LiveState["history"] }) {
         {[0, 0.5, 1].map((g) => (
           <g key={g}>
             <line x1={P} x2={W - 8} y1={y(g)} y2={y(g)} stroke="#1e293b" />
-            <text x={P - 4} y={y(g) + 4} textAnchor="end" className="fill-slate-500 font-mono" fontSize={10}>{g * 100}%</text>
+            <text x={P - 4} y={y(g) + 4} textAnchor="end" className="fill-slate-500" fontSize={10}>{g * 100}%</text>
           </g>
         ))}
         <polyline points={line(2)} fill="none" stroke="#94a3b8" strokeDasharray="5 4" strokeWidth={1.5} />
         <polyline points={line(3)} fill="none" stroke="#94a3b8" strokeDasharray="1 4" strokeWidth={1.5} />
         <polyline points={line(1)} fill="none" stroke={DEM} strokeWidth={2.5} />
-        <text x={P} y={H - 6} className="fill-slate-500 font-mono" fontSize={10}>{fmt(t0)}</text>
-        <text x={W - 8} y={H - 6} textAnchor="end" className="fill-slate-500 font-mono" fontSize={10}>{fmt(t1)} ET</text>
+        <text x={P} y={H - 6} className="fill-slate-500" fontSize={10}>{fmt(t0)}</text>
+        <text x={W - 8} y={H - 6} textAnchor="end" className="fill-slate-500" fontSize={10}>{fmt(t1)} ET</text>
       </svg>
       <figcaption className="flex gap-4 text-xs text-slate-400">
         <span><span className="mr-1 inline-block h-0.5 w-4 align-middle" style={{ background: DEM }} />Model</span>

@@ -69,7 +69,7 @@ export default function DotChart({ districts, view, live }: { districts: Distric
           );
         })}
         <path d={line} fill="none" stroke="#e2e8f0" strokeOpacity={0.7} strokeWidth={1.5} strokeDasharray="4 4" />
-        <text x={xR - GAP / 2} y={height - 4} textAnchor="middle" className="fill-slate-400 font-mono" fontSize={11}>
+        <text x={xR - GAP / 2} y={height - 4} textAnchor="middle" className="fill-slate-400" fontSize={11}>
           218 to win
         </text>
       </svg>
@@ -81,7 +81,7 @@ export default function DotChart({ districts, view, live }: { districts: Distric
             left: `min(calc(${(hover.x / width) * 100}% + 12px), calc(100% - 14rem))`,
             top: `calc(${(hover.y / height) * 100}% + 12px)`,
           }}>
-          <div className="mb-1 font-mono text-sm text-white">
+          <div className="mb-1 text-sm font-semibold text-white">
             {hover.d.id} <span className="text-slate-400">· {hover.d.inc === "Open" ? "open seat" : `${hover.d.inc} incumbent`}</span>
           </div>
           <Row label="Model" value={`${pct(hover.d.p)} D`} />

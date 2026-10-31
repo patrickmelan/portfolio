@@ -3,22 +3,17 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import SectionHeading from "@/components/sections/SectionHeading";
 import Backtest from "./Backtest";
-import { pct, signed } from "./colors";
 import DistrictTable from "./DistrictTable";
 import DotChart, { DotLegend, viewProb } from "./DotChart";
+import Hero from "./Hero";
 import LivePanel from "./LivePanel";
 import SeatHistogram from "./SeatHistogram";
 import type { Forecast, View } from "./types";
 import { useLive } from "./useLive";
+import Walkthrough from "./Walkthrough";
 
-const VIEW_NOTE: Record<View, string> = {
-  model: "Model: past results, polls, expert ratings, and fundraising",
-  market: "Polymarket prices where a district market exists",
-  blend: "Model and market averaged; the market counts for more in heavily traded races (up to half)",
-  live: "Live: updated as races are called tonight",
-};
+const VIEW_LABEL: Record<View, string> = { live: "Live", model: "Model", market: "Markets", blend: "Blend" };
 
 export default function HouseForecast({ data }: { data: Forecast }) {
   const live = useLive();
@@ -27,163 +22,122 @@ export default function HouseForecast({ data }: { data: Forecast }) {
     if (live) setView("live");
   }, [live != null]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const d = data.layers.deluxe;
   const views: View[] = live ? ["live", "model", "market", "blend"] : ["model", "market", "blend"];
-  const expected = data.districts.reduce((a, x) => a + viewProb(x, view, live), 0);
-  const favored = data.districts.filter((x) => viewProb(x, view, live) > 0.5).length;
-  const tossups = data.districts.filter((x) => {
-    const p = viewProb(x, view, live);
-    return p > 0.4 && p < 0.6;
-  }).length;
-  const updated = new Date(live?.updated ?? data.updated);
+  const probs = data.districts.map((x) => viewProb(x, view, live));
+  const expected = Math.round(probs.reduce((a, b) => a + b, 0));
+  const favored = probs.filter((p) => p > 0.5).length;
+  const tossups = probs.filter((p) => p > 0.4 && p < 0.6).length;
+  const updated = new Date(live?.updated ?? data.updated).toLocaleString("en-US", {
+    weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/New_York",
+  });
 
   return (
-    <div className="relative min-h-screen bg-navy text-slate-300">
-      <div className="relative z-10 mx-auto max-w-5xl px-6 py-16 sm:py-20">
-        <Link href="/#projects" className="group mb-10 inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#3ec8c4]">
-          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-          Patrick Melan
-        </Link>
+    <div className="min-h-screen bg-navy text-slate-300">
+      <div className="mx-auto max-w-5xl px-6 pb-24 pt-10 sm:pt-14">
+        <nav className="mb-14 flex items-center justify-between text-sm">
+          <Link href="/#projects" className="group inline-flex items-center gap-2 text-slate-400 hover:text-white">
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+            Patrick Melan
+          </Link>
+          <span className="text-slate-500">
+            {live ? <span className="inline-flex items-center gap-2 text-white"><Pulse />Live results</span> : "2026 House forecast"}
+          </span>
+        </nav>
 
-        <header className="mb-12">
-          <p className="font-mono text-sm uppercase tracking-widest text-[#3ec8c4]">
-            {live ? "Election night · live" : "2026 midterms forecast"}
-          </p>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">Who wins the House?</h1>
-          <p className="mt-4 max-w-2xl leading-relaxed text-slate-300">
-            A probabilistic forecast of all 435 races, simulated 50,000 times, built from past results, polling,
-            expert ratings, and fundraising, and checked against prediction markets.
-          </p>
-          <p className="mt-3 font-mono text-xs text-slate-500">
-            Updated {updated.toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/New_York" })} ET
-            · Election Day Nov 3, 2026
-          </p>
-        </header>
-
-        {/* Headline odds */}
-        <div className="mb-14 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <Stat label={live ? "Live model" : "Our forecast"} big={pct(live?.pControl ?? d.pControl)} sub="chance Democrats win the House" accent />
-          <Stat label="Expected seats" big={`${Math.round(live?.meanSeats ?? d.meanSeats)} D`}
-            sub={`80% range ${(live?.seats80 ?? d.seats80)[0]}–${(live?.seats80 ?? d.seats80)[1]}`} />
-          {(["polymarket", "kalshi"] as const).map((k) => {
-            const p = live?.markets[k] ?? data.markets[k]?.p_dem;
-            return p == null ? null : (
-              <Stat key={k} label={k === "polymarket" ? "Polymarket" : "Kalshi"} big={pct(p)}
-                sub={`market price${data.markets[k] ? ` · $${(data.markets[k]!.volume / 1e6).toFixed(0)}M traded` : ""}`} />
-            );
-          })}
-        </div>
+        <Hero data={data} live={live} />
+        <p className="-mt-8 mb-16 text-sm text-slate-500">Updated {updated} ET. Polls close Tuesday, November 3.</p>
 
         {live && <LivePanel live={live} districts={data.districts} />}
 
-        {/* 435 dots */}
-        <section className="mb-16">
-          <SectionHeading title="All 435 seats" />
-          <div className="mb-4 flex flex-wrap items-center gap-2">
-            {views.map((v) => (
-              <button key={v} onClick={() => setView(v)}
-                className={`rounded-full border px-4 py-1.5 text-sm capitalize transition-colors ${view === v
-                  ? "border-[#3ec8c4] bg-[#3ec8c4]/10 text-[#3ec8c4]" : "border-white/15 text-slate-300 hover:border-white/40"}`}>
-                {v === "market" ? "Markets" : v}
-              </button>
-            ))}
-            <span className="ml-1 text-xs text-slate-500">{VIEW_NOTE[view]}</span>
+        <Section title="Every seat, from safest Democratic to safest Republican"
+          lede="Each dot is a district, sorted by how likely the Democrat is to win it and stacked in columns of 15. The 218th dot is where the majority is decided.">
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
+            <div role="tablist" aria-label="Probability source" className="inline-flex rounded-lg bg-white/5 p-1">
+              {views.map((v) => (
+                <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}
+                  className={`rounded-md px-3.5 py-1.5 text-sm transition-colors ${view === v
+                    ? "bg-white text-navy shadow-sm" : "text-slate-300 hover:text-white"}`}>
+                  {VIEW_LABEL[v]}
+                </button>
+              ))}
+            </div>
+            <p className="text-sm tabular-nums text-slate-400">
+              <span className="text-white">{expected}</span> expected Democratic seats ·{" "}
+              <span className="text-white">{favored}</span> lean their way · <span className="text-white">{tossups}</span> within 40–60%
+            </p>
           </div>
-          <div className="mb-4 grid grid-cols-3 gap-3 text-center">
-            <Mini label="Exp. D seats" value={Math.round(expected).toString()} />
-            <Mini label="Favored D/R" value={`${favored}/${435 - favored}`} />
-            <Mini label="Toss-ups" value={tossups.toString()} />
+          <DotChart districts={data.districts} view={view} live={live} />
+          <div className="mt-4 flex flex-wrap items-start justify-between gap-4">
+            <DotLegend view={view} />
+            <p className="max-w-sm text-xs leading-relaxed text-slate-500">{VIEW_NOTE[view]}</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 sm:p-5">
-            <DotChart districts={data.districts} view={view} live={live} />
-            <div className="mt-3"><DotLegend view={view} /></div>
-          </div>
-        </section>
+        </Section>
 
-        <section className="mb-16">
-          <SectionHeading title="Seat distribution" />
-          <p className="mb-4 max-w-2xl text-sm leading-relaxed text-slate-400">
-            Each simulation draws one national polling miss shared by every race, a regional miss per state, and
-            race-level noise. The spread of outcomes is wide because polling misses move dozens of seats at once.
-          </p>
+        <Section title="How one district's number gets built"
+          lede={`Start from how the district votes for president, then let each input move it. Defaults to ${data.layers.deluxe.tippingPoint}, the seat most likely to decide the majority.`}>
+          <Walkthrough districts={data.districts} initial={data.layers.deluxe.tippingPoint} />
+        </Section>
+
+        <Section title="The range of outcomes"
+          lede="Every simulation draws one national polling miss shared by all 435 races, a miss for each state, and noise for each race. Because a national miss moves dozens of seats at once, the spread is wide.">
           <SeatHistogram hist={live?.seatHist ?? data.seatHist.deluxe} />
-        </section>
+        </Section>
 
-        <section className="mb-16">
-          <SectionHeading title="Competitive races" />
+        <Section title="Competitive races" lede="Every seat that's between 2% and 98% in at least one view. Search by state or district.">
           <DistrictTable districts={data.districts} live={live} />
-        </section>
+        </Section>
 
-        <section className="mb-16">
-          <SectionHeading title="How it works" />
-          <ol className="grid gap-x-10 gap-y-5 text-sm leading-relaxed sm:grid-cols-2">
-            {METHOD(data).map(([title, body], i) => (
-              <li key={title} className="flex gap-4">
-                <span className="font-mono text-[#3ec8c4]">{String(i + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3 className="font-medium text-white">{title}</h3>
-                  <p className="mt-1 text-slate-400">{body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section className="mb-16">
-          <SectionHeading title="Track record" />
+        <Section title="Would it have worked before?"
+          lede="Each past election from 2006 to 2024 is predicted by a model that never saw it, using only what was known a week before Election Day.">
           <Backtest bt={data.backtest} />
-        </section>
+        </Section>
 
-        <section className="mb-16">
-          <SectionHeading title="Caveats" />
-          <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-400">
-            {CAVEATS.map((c) => <li key={c}>{c}</li>)}
-          </ul>
-        </section>
+        <Section title="What it can't see">
+          <div className="grid gap-x-10 gap-y-4 text-sm leading-relaxed text-slate-400 sm:grid-cols-2">
+            {CAVEATS.map(([h, b]) => (
+              <p key={h}><span className="text-slate-200">{h}</span> {b}</p>
+            ))}
+          </div>
+        </Section>
 
-        <footer className="border-t border-white/10 pt-6 text-xs leading-relaxed text-slate-500">
-          Data: The Downballot (presidential results by district), FiveThirtyEight&apos;s archived results and polls,
-          Wikipedia (expert ratings and 2026 polls, CC BY-SA), FEC, the American Presidency Project (Gallup approval),
-          Polymarket, and Kalshi. Race calls on election night are entered as reported by news organizations. Not
-          affiliated with any campaign or party.
+        <footer className="mt-20 border-t border-white/10 pt-6 text-xs leading-relaxed text-slate-500">
+          Built by Patrick Melan with data from The Downballot, FiveThirtyEight&apos;s archive, Wikipedia (CC BY-SA),
+          the FEC, the American Presidency Project, Polymarket, and Kalshi. Not affiliated with any campaign or party.
         </footer>
       </div>
     </div>
   );
 }
 
-const METHOD = (data: Forecast): [string, string][] => [
-  ["Start from partisanship", "Each district's 2024 presidential margin on its 2026 lines, relative to the nation. Mid-decade redistricting made the median seat about R+3."],
-  ["Add the national mood", `The generic ballot (${signed(data.national.genericBallot)}) blended with presidential approval (net ${data.national.approvalNet.toFixed(0)}) into one environment score, shifting every district.`],
-  ["Adjust for candidates", "Incumbency (a smaller edge than it used to be), last cycle's over- or under-performance, and the D/R fundraising ratio from FEC filings."],
-  ["Weigh the experts", "In about 145 competitive seats, the average Cook, Inside Elections, and Sabato rating gets its own weight; in close races it carries more signal than anything else."],
-  ["Blend in district polls", "Recent polls pull the estimate toward them, more so with more and fresher polls. Campaign- and party-sponsored polls are shifted 5 points against the sponsor."],
-  ["Simulate 50,000 elections", "Fat-tailed national, state, and district errors, sized from how far forecasts missed in 2006–2024. A seat's probability is the share of simulations its party wins."],
+const VIEW_NOTE: Record<View, string> = {
+  model: "The model: past results, the national environment, candidates, fundraising, expert ratings, and polls.",
+  market: "Polymarket's price where a district market exists (147 seats). Hollow dots have no market and show the model.",
+  blend: "Model and market averaged. The market gets more say in heavily traded races, never more than half.",
+  live: "Called races are outlined. Uncalled seats update as results come in; early partial counts are ignored.",
+};
+
+const CAVEATS: [string, string][] = [
+  ["Ten elections.", "Only 2006–2024 calibrate how big a national polling miss can be, so the uncertainty is itself uncertain."],
+  ["Two parties.", "It models Democrat-versus-Republican races. Independents backed by Democrats, as in Alaska, are a blind spot."],
+  ["Thin markets.", "District markets often trade under $50,000 and overprice underdogs, which is why the blend caps their weight."],
+  ["Imperfect freezing.", "Past expert ratings and fundraising are final pre-election values, not exactly what was known a week out."],
 ];
 
-const CAVEATS = [
-  "Only ten elections since 2006 calibrate the size of a national polling miss, so the uncertainty itself is uncertain.",
-  "The model sees Democrat-vs-Republican races; independents backed by Democrats (as in Alaska) are a blind spot.",
-  "Prediction markets are thin at the district level and tend to overprice underdogs; the blend caps their weight at half.",
-  "Historical expert ratings and fundraising are final pre-election values, not strictly frozen a week out.",
-  "On election night only race calls and near-final counts move the forecast; early partial counts are ignored on purpose.",
-];
-
-function Stat({ label, big, sub, accent }: { label: string; big: string; sub: string; accent?: boolean }) {
+function Section({ title, lede, children }: { title: string; lede?: string; children: React.ReactNode }) {
   return (
-    <div className={`rounded-xl border p-4 ${accent ? "border-[#3ec8c4]/50 bg-[#3ec8c4]/5" : "border-white/10 bg-white/[0.02]"}`}>
-      <p className="font-mono text-[11px] uppercase tracking-widest text-slate-400">{label}</p>
-      <p className={`mt-1 text-3xl font-bold tabular-nums ${accent ? "text-[#3ec8c4]" : "text-white"}`}>{big}</p>
-      <p className="mt-1 text-xs text-slate-400">{sub}</p>
-    </div>
+    <section className="mb-24">
+      <h2 className="text-2xl font-semibold tracking-tight text-white">{title}</h2>
+      {lede && <p className="mt-2 max-w-2xl leading-relaxed text-slate-400">{lede}</p>}
+      <div className="mt-8">{children}</div>
+    </section>
   );
 }
 
-function Mini({ label, value }: { label: string; value: string }) {
+function Pulse() {
   return (
-    <div className="rounded-lg bg-white/[0.03] px-3 py-2">
-      <p className="truncate text-[11px] uppercase tracking-wider text-slate-500">{label}</p>
-      <p className="whitespace-nowrap font-mono text-base text-white sm:text-lg">{value}</p>
-    </div>
+    <span className="relative flex h-2 w-2">
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+      <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+    </span>
   );
 }

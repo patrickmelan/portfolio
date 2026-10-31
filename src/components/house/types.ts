@@ -18,6 +18,8 @@ export interface District {
   pMkt: number | null;
   vol: number | null;
   pBlend: number;
+  /** Margin build-up (D−R pts): lean, +national, +candidates and money, +experts, +polls (final). */
+  steps: [number, number, number, number, number];
 }
 
 export interface LayerSummary {

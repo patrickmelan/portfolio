@@ -17,7 +17,7 @@ export default function Backtest({ bt }: { bt: Forecast["backtest"] }) {
     <div className="grid gap-8 lg:grid-cols-5">
       <div className="overflow-x-auto lg:col-span-3">
         <table className="w-full text-sm tabular-nums">
-          <thead className="text-xs uppercase tracking-wider text-slate-400">
+          <thead className="text-xs text-slate-400">
             <tr>
               <th className="py-2 text-left font-medium">Model</th>
               <th className="py-2 text-right font-medium" title="Mean squared error of district win probabilities; lower is better">Brier</th>
