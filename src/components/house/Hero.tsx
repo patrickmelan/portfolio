@@ -1,4 +1,5 @@
 import { DEM, REP } from "./colors";
+import LiveTag from "./LiveTag";
 import type { Forecast, LiveState } from "./types";
 
 /**
@@ -17,6 +18,7 @@ export default function Hero({ data, live }: { data: Forecast; live: LiveState |
   return (
     <section className="mb-16 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-end">
       <div>
+        {live && <LiveTag updated={live.updated} />}
         <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl">
           {favored} {verb} the House.
         </h1>

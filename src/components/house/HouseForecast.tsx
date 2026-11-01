@@ -35,12 +35,12 @@ export default function HouseForecast({ data }: { data: Forecast }) {
     <div className="min-h-screen bg-navy text-slate-300">
       <div className="mx-auto max-w-5xl px-6 pb-24 pt-10 sm:pt-14">
         <nav className="mb-14 flex items-center justify-between text-sm">
-          <Link href="/#projects" className="group inline-flex items-center gap-2 text-slate-400 hover:text-white">
+          <Link href="/#projects" className="group inline-flex items-center gap-2 whitespace-nowrap text-slate-400 hover:text-white">
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
             Patrick Melan
           </Link>
-          <span className="text-slate-500">
-            {live ? <span className="inline-flex items-center gap-2 text-white"><Pulse />Live results</span> : "2026 House forecast"}
+          <span className="whitespace-nowrap text-slate-500">
+            2026 House forecast
           </span>
         </nav>
 
@@ -134,14 +134,5 @@ function Section({ title, lede, children }: { title: string; lede?: string; chil
       {lede && <p className="mt-2 max-w-2xl leading-relaxed text-slate-400">{lede}</p>}
       <div className="mt-8">{children}</div>
     </section>
-  );
-}
-
-function Pulse() {
-  return (
-    <span className="relative flex h-2 w-2">
-      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
-      <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
-    </span>
   );
 }
