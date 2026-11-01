@@ -1,5 +1,13 @@
 const projects = [
   {
+    title: "2026 House Forecast",
+    status: "Live on election night",
+    description: "Probabilistic forecast of all 435 House races. A Python model combines each district's presidential lean on its 2026 lines, the generic ballot and approval, incumbency, FEC fundraising, expert ratings, and 280 district polls, then simulates the election 50,000 times with correlated national and state polling misses. Backtested on every election since 2006 with inputs frozen a week out, where it beat the Cook ratings at calling races. On election night it re-weights the simulations as races are called and compares itself against Polymarket and Kalshi.",
+    image: "/house-forecast/opengraph-image",
+    technologies: ["Python", "pandas", "NumPy", "SciPy", "Monte Carlo simulation", "Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel Blob"],
+    demo: "/house-forecast",
+  },
+  {
     title: "RefChat",
     status: "Actively updating",
     description: "Rules assistant for basketball officials. Ask a question and get an answer cited to the exact rule and section in the NBA or NCAA rulebook, plus real calls from the NBA's Last Two Minute reports when they apply. A Python retrieval service embeds the question, searches MongoDB Atlas Vector Search, and reranks the results with a cross-encoder before Claude writes the answer. Also has a quiz mode and a personal study dashboard.",

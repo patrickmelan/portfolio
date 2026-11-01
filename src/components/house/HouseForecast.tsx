@@ -94,7 +94,7 @@ export default function HouseForecast({ data }: { data: Forecast }) {
 
         <Section title="What it can't see">
           <div className="grid gap-x-10 gap-y-4 text-sm leading-relaxed text-slate-400 sm:grid-cols-2">
-            {CAVEATS.map(([h, b]) => (
+            {caveats(data).map(([h, b]) => (
               <p key={h}><span className="text-slate-200">{h}</span> {b}</p>
             ))}
           </div>
@@ -116,7 +116,11 @@ const VIEW_NOTE: Record<View, string> = {
   live: "Called races are outlined. Uncalled seats update as results come in; early partial counts are ignored.",
 };
 
-const CAVEATS: [string, string][] = [
+const caveats = (data: Forecast): [string, string][] => [
+  ...(data.sensitivity?.pControl2010plus != null ? [[
+    "One number, several fair answers.",
+    `Defensible modeling choices move the headline. Fit only on 2010–2024, leaving out the 2006 and 2008 waves, and the chance is ${Math.round(data.sensitivity.pControl2010plus * 100)}% instead of ${Math.round(data.layers.deluxe.pControl * 100)}%; the simpler Lite model says ${Math.round(data.layers.lite.pControl * 100)}%. Read it as a range, not a decimal.`,
+  ] as [string, string]] : []),
   ["Ten elections.", "Only 2006–2024 calibrate how big a national polling miss can be, so the uncertainty is itself uncertain."],
   ["Two parties.", "It models Democrat-versus-Republican races. Independents backed by Democrats, as in Alaska, are a blind spot."],
   ["Thin markets.", "District markets often trade under $50,000 and overprice underdogs, which is why the blend caps their weight."],

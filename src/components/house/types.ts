@@ -40,6 +40,7 @@ export interface Forecast {
   updated: string;
   electionDate: string;
   national: { genericBallot: number; approvalNet: number; env: number };
+  sensitivity: { pControl2010plus: number | null };
   layers: Record<Layer, LayerSummary>;
   blend: { expectedSeats: number; maxWeight: number; volHalf: number };
   markets: Partial<Record<"polymarket" | "kalshi", { p_dem: number; volume: number }>>;
