@@ -2,6 +2,7 @@
 
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { useMemo, useState } from "react";
+import CallMark from "./CallMark";
 import { pct, probColor, signed } from "./colors";
 import type { District, LiveState } from "./types";
 
@@ -95,7 +96,7 @@ export default function DistrictTable({ districts, live }: { districts: District
                   </td>
                   {live && (
                     <td className="px-2 py-1.5 text-right">
-                      {lv?.[1] ? <span className={lv[1] === "D" ? "font-semibold text-blue-400" : "font-semibold text-red-400"}>{lv[1]} ✓</span>
+                      {lv?.[1] ? <CallMark call={lv[1]} pDemPre={d.p} />
                         : <Prob p={lv?.[0] ?? d.p} />}
                     </td>
                   )}

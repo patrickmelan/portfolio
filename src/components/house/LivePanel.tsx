@@ -1,9 +1,11 @@
 "use client";
 
+import { Check, X } from "lucide-react";
+import { predictedRight } from "./CallMark";
 import { DEM, pct } from "./colors";
 import type { District, LiveState } from "./types";
 
-/** Election-night block: control odds over the night vs. markets, races to watch, and recent upsets. */
+/** Election-night block: control odds over the night vs. markets, races to watch, and how our calls are holding up. */
 export default function LivePanel({ live, districts }: { live: LiveState; districts: District[] }) {
   const pre = new Map(districts.map((d) => [d.id, d]));
   const entries = Object.entries(live.districts);
@@ -12,13 +14,12 @@ export default function LivePanel({ live, districts }: { live: LiveState; distri
     .map(([id, [p, , lev]]) => ({ id, p, lev: lev ?? 0, impact: (lev ?? 0) * 4 * p * (1 - p) }))
     .sort((a, b) => b.impact - a.impact)
     .slice(0, 12);
-  const upsets = entries
+  const called = entries
     .filter(([id, [, call]]) => call && pre.has(id))
-    .map(([id, [, call]]) => ({ id, call, pre: pre.get(id)!.p }))
-    .map((u) => ({ ...u, surprise: u.call === "D" ? 1 - u.pre : u.pre }))
-    .filter((u) => u.surprise > 0.5)
-    .sort((a, b) => b.surprise - a.surprise)
-    .slice(0, 8);
+    .map(([id, [, call]]) => ({ id, call: call as "D" | "R", pre: pre.get(id)!.p }))
+    .map((c) => ({ ...c, right: predictedRight(c.pre, c.call), had: c.call === "D" ? c.pre : 1 - c.pre }));
+  const right = called.filter((c) => c.right).length;
+  const misses = called.filter((c) => !c.right).sort((a, b) => a.had - b.had);
 
   return (
     <section className="mb-24">
@@ -45,12 +46,24 @@ export default function LivePanel({ live, districts }: { live: LiveState; distri
               ))}
             </tbody>
           </table>
-          {upsets.length > 0 && (
+          {called.length > 0 && (
             <>
-              <h3 className="mb-2 mt-5 text-sm font-medium text-white">Upsets so far</h3>
-              <p className="text-sm text-slate-300">
-                {upsets.map((u) => `${u.id} (${u.call}, was ${pct(u.call === "D" ? u.pre : 1 - u.pre)})`).join(" · ")}
+              <h3 className="mb-2 mt-6 text-sm font-medium text-white">How the forecast is doing</h3>
+              <p className="flex items-center gap-2 text-sm text-slate-300">
+                <Check className="h-4 w-4 text-emerald-400" strokeWidth={3} aria-hidden />
+                <span><span className="font-semibold text-white">{right} of {called.length}</span> called races went the way we predicted</span>
               </p>
+              {misses.length > 0 && (
+                <ul className="mt-2 space-y-1 text-sm">
+                  {misses.slice(0, 10).map((m) => (
+                    <li key={m.id} className="flex items-start gap-2 text-slate-300">
+                      <X className="h-4 w-4 shrink-0 text-amber-400" strokeWidth={3} aria-label="missed" />
+                      <span className="shrink-0 whitespace-nowrap font-mono text-white">{m.id}</span>
+                      <span>won by the {m.call === "D" ? "Democrat" : "Republican"}; we gave them {pct(m.had)}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </>
           )}
         </div>

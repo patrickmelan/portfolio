@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { predictedRight } from "./CallMark";
 import { BUCKETS, pct, probColor } from "./colors";
 import type { District, LiveState, View } from "./types";
 
@@ -90,7 +91,12 @@ export default function DotChart({ districts, view, live }: { districts: Distric
           {live?.districts[hover.d.id] && (
             <Row
               label="Live"
-              value={live.districts[hover.d.id][1] ? `Called ${live.districts[hover.d.id][1]}` : `${pct(live.districts[hover.d.id][0])} D`}
+              value={(() => {
+                const c = live.districts[hover.d.id][1];
+                if (!c) return `${pct(live.districts[hover.d.id][0])} D`;
+                const had = c === "D" ? hover.d.p : 1 - hover.d.p;
+                return `Called ${c} ${predictedRight(hover.d.p, c) ? "✓" : "✗"} (we had ${pct(had)})`;
+              })()}
             />
           )}
         </div>
