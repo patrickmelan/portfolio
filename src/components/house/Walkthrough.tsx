@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronDown } from "lucide-react";
 import { useMemo, useState } from "react";
 import { DEM, REP, pct, signed } from "./colors";
 import type { District } from "./types";
@@ -29,10 +30,13 @@ export default function Walkthrough({ districts, initial }: { districts: Distric
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <label className="text-sm text-slate-400">
           District
-          <select value={d.id} onChange={(e) => setId(e.target.value)}
-            className="ml-3 rounded-md border border-white/15 bg-navy-dark px-3 py-1.5 font-mono text-white focus:border-white/40 focus:outline-none">
-            {sorted.map((x) => <option key={x.id} value={x.id}>{x.id}</option>)}
-          </select>
+          <span className="relative ml-3 inline-block">
+            <select value={d.id} onChange={(e) => setId(e.target.value)}
+              className="cursor-pointer appearance-none rounded-md border border-white/15 bg-navy-dark py-1.5 pl-3 pr-9 font-mono text-white hover:border-white/30 focus:border-white/40 focus:outline-none">
+              {sorted.map((x) => <option key={x.id} value={x.id}>{x.id}</option>)}
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden />
+          </span>
         </label>
         <p className="text-sm text-slate-400">
           Predicted margin <span className="font-semibold text-white">{signed(vals[4])}</span>, a{" "}

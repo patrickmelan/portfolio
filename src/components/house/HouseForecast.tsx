@@ -74,7 +74,7 @@ export default function HouseForecast({ data }: { data: Forecast }) {
         </Section>
 
         <Section title="How one district's number gets built"
-          lede={`Start from how the district votes for president, then let each input move it. Defaults to ${data.layers.deluxe.tippingPoint}, the seat most likely to decide the majority.`}>
+          lede={`Start from how the district votes for president, then let each input move it. Defaults to ${data.layers.deluxe.tippingPoint.replace("-", "\u2011")}, the seat most likely to decide the majority.`}>
           <Walkthrough districts={data.districts} initial={data.layers.deluxe.tippingPoint} />
         </Section>
 
