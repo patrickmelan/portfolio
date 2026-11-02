@@ -6,6 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import projects from "../text/Projects";
 import SectionHeading from "./SectionHeading";
+import { Barlow_Condensed } from "next/font/google";
+
+const condensed = Barlow_Condensed({ subsets: ["latin"], weight: ["800"] });
 
 const Projects = () => {
   return (
@@ -65,11 +68,7 @@ const Projects = () => {
                     )}
                   </span>
                   {project.status && (
-                    <span className="ml-2 inline-flex translate-y-[-1px] items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-0.5 align-middle text-xs font-medium text-amber-300">
-                      <span className="relative flex h-1.5 w-1.5">
-                        <span className="absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 motion-safe:animate-ping" />
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-400" />
-                      </span>
+                    <span className={`${condensed.className} ml-2.5 inline-block translate-y-[-2px] bg-[#ffd400] px-1.5 py-0.5 align-middle text-[13px] font-extrabold uppercase leading-none tracking-wide text-black`}>
                       {project.status}
                     </span>
                   )}

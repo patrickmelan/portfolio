@@ -37,7 +37,7 @@ export default function HouseForecast({ data }: { data: Forecast }) {
         <nav className="mb-14 flex items-center justify-between text-sm">
           <Link href="/#projects" className="group inline-flex items-center gap-2 whitespace-nowrap text-slate-400 hover:text-white">
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-            Patrick Melan
+            Back to portfolio
           </Link>
           <span className="whitespace-nowrap text-slate-500">
             2026 House forecast
