@@ -45,7 +45,9 @@ export default function HouseForecast({ data }: { data: Forecast }) {
         </nav>
 
         <Hero data={data} live={live} />
-        <p className="-mt-8 mb-16 text-sm text-slate-500">Updated {updated} ET. Polls close Tuesday, November 3.</p>
+        <p className="-mt-8 mb-16 text-sm text-slate-500">
+          Updated {updated} ET.{live ? " Results update every few minutes." : " Polls close Tuesday, November 3."}
+        </p>
 
         {live && <LivePanel live={live} districts={data.districts} />}
 
