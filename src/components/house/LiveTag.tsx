@@ -12,12 +12,12 @@ export default function LiveTag({ updated }: { updated: string }) {
     hour: "numeric", minute: "2-digit", timeZone: "America/New_York",
   });
   return (
-    <div className={`${condensed.className} mb-6 inline-flex items-stretch uppercase leading-none`}>
-      <span className="flex items-center gap-1.5 whitespace-nowrap bg-[#ffd400] px-2.5 py-1.5 text-[19px] font-extrabold tracking-wide text-black sm:gap-2 sm:px-3 sm:py-2 sm:text-[26px]">
+    <div className={`${condensed.className} mb-6 inline-flex max-w-full flex-wrap items-stretch uppercase leading-none`}>
+      <span className="flex items-center gap-1.5 whitespace-nowrap bg-[#ffd400] px-2.5 py-1.5 text-[clamp(15px,4.9vw,26px)] font-extrabold tracking-wide text-black sm:gap-2 sm:px-3 sm:py-2">
         <Check className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={4} aria-hidden />
         Updated election night
       </span>
-      <span className="flex items-center whitespace-nowrap bg-white px-2.5 text-[19px] font-bold tracking-wide text-[#0b1b3f] sm:px-3 sm:text-[26px]">
+      <span className="flex items-center whitespace-nowrap bg-white px-2.5 py-1.5 text-[clamp(15px,4.9vw,26px)] font-bold tracking-wide text-[#0b1b3f] sm:px-3">
         {time} ET
       </span>
     </div>
