@@ -113,7 +113,7 @@ const VIEW_NOTE: Record<View, string> = {
   model: "The model: past results, the national environment, candidates, fundraising, expert ratings, and polls.",
   market: "Polymarket's price where a district market exists (147 seats). Hollow dots have no market and show the model.",
   blend: "Model and market averaged. The market gets more say in heavily traded races, never more than half.",
-  live: "Called races are outlined. Uncalled seats update as results come in; early partial counts are ignored.",
+  live: "Called seats carry a check if they went the way we predicted, an X if not. Uncalled seats update as results come in; early partial counts are ignored.",
 };
 
 const caveats = (data: Forecast): [string, string][] => [

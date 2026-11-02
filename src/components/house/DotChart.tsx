@@ -56,17 +56,18 @@ export default function DotChart({ districts, view, live }: { districts: Distric
           const call = view === "live" ? live?.districts[d.id]?.[1] : "";
           const hollow = view === "market" && d.pMkt == null;
           return (
-            <circle
-              key={d.id}
-              cx={x}
-              cy={y}
-              r={hollow ? R - 1.5 : R}
-              fill={hollow ? "transparent" : probColor(p)}
-              stroke={call ? "#fff" : hollow ? probColor(p) : "none"}
-              strokeWidth={call ? 2 : hollow ? 1.5 : 0}
-              onMouseEnter={() => setHover({ d, x, y })}
-              style={{ transition: "cx 400ms ease, cy 400ms ease, fill 300ms" }}
-            />
+            <g key={d.id} onMouseEnter={() => setHover({ d, x, y })}>
+              <circle
+                cx={x}
+                cy={y}
+                r={hollow ? R - 1.5 : R}
+                fill={hollow ? "transparent" : probColor(p)}
+                stroke={hollow ? probColor(p) : "none"}
+                strokeWidth={hollow ? 1.5 : 0}
+                style={{ transition: "cx 400ms ease, cy 400ms ease, fill 300ms" }}
+              />
+              {call && <CallGlyph x={x} y={y} right={predictedRight(d.p, call)} />}
+            </g>
           );
         })}
         <path d={line} fill="none" stroke="#e2e8f0" strokeOpacity={0.7} strokeWidth={1.5} strokeDasharray="4 4" />
@@ -105,12 +106,29 @@ export default function DotChart({ districts, view, live }: { districts: Distric
   );
 }
 
+/** Small white check (called the way we predicted) or X (we missed), drawn inside a called seat's dot. */
+function CallGlyph({ x, y, right }: { x: number; y: number; right: boolean }) {
+  const d = right
+    ? `M${x - 3.6} ${y + 0.2} L${x - 1.1} ${y + 2.8} L${x + 3.8} ${y - 2.8}`
+    : `M${x - 2.8} ${y - 2.8} L${x + 2.8} ${y + 2.8} M${x + 2.8} ${y - 2.8} L${x - 2.8} ${y + 2.8}`;
+  return <path d={d} fill="none" stroke="#fff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" pointerEvents="none" />;
+}
+
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between">
       <span className="text-slate-400">{label}</span>
       <span className="font-mono text-slate-200">{value}</span>
     </div>
+  );
+}
+
+function LegendGlyph({ right }: { right: boolean }) {
+  return (
+    <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" aria-hidden>
+      <circle cx={10} cy={10} r={9} fill="#475569" />
+      <CallGlyph x={10} y={10} right={right} />
+    </svg>
   );
 }
 
@@ -130,10 +148,14 @@ export function DotLegend({ view }: { view: View }) {
         </span>
       )}
       {view === "live" && (
-        <span className="inline-flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full border-2 border-white bg-slate-500" />
-          Race called
-        </span>
+        <>
+          <span className="inline-flex items-center gap-1.5">
+            <LegendGlyph right /> Called as we predicted
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <LegendGlyph right={false} /> Called against our prediction
+          </span>
+        </>
       )}
     </div>
   );
