@@ -5,7 +5,7 @@ import type { LiveState } from "./types";
 
 // Public Vercel Blob URL the Python live loop overwrites on election night (house-forecast/RUNBOOK.md).
 // Empty = live mode off; the page stays on the pre-election forecast.
-const BLOB_LIVE_URL = "";
+const BLOB_LIVE_URL = "https://9wirxfeyuozqwmss.public.blob.vercel-storage.com/house-forecast/live.json";
 export const LIVE_URL = process.env.NEXT_PUBLIC_HOUSE_LIVE_URL || BLOB_LIVE_URL;
 const POLL_MS = 60_000;
 
