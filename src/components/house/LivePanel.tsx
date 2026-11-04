@@ -204,7 +204,7 @@ function Timeline({ history }: { history: LiveState["history"] }) {
             {hp.poly != null && <> · Polymarket {pct(hp.poly)}</>}
             {hp.kalshi != null && <> · Kalshi {pct(hp.kalshi)}</>}
           </>
-        ) : "Hover or tap the chart for any moment since polls opened."}
+        ) : "Hover or tap the chart to see any update."}
       </p>
     </figure>
   );
