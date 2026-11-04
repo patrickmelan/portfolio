@@ -30,7 +30,7 @@ export default function LivePanel({ live, districts }: { live: LiveState; distri
 
   return (
     <section className="mb-24">
-      <h2 className="text-2xl font-semibold tracking-tight text-white">Tonight</h2>
+      <h2 className="text-2xl font-semibold tracking-tight text-white">Results</h2>
       <p className="mt-2 max-w-3xl leading-relaxed text-slate-400">
         <span className="text-white">{live.nCalled} of 435</span> races called: {live.calledDem} Democratic,{" "}
         {live.nCalled - live.calledDem} Republican.{" "}
@@ -153,7 +153,7 @@ function Timeline({ history }: { history: LiveState["history"] }) {
   return (
     <figure ref={box}>
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
-        <figcaption className="text-base font-medium text-white">Chance Democrats win the House, tonight</figcaption>
+        <figcaption className="text-base font-medium text-white">Chance Democrats win the House, as results came in</figcaption>
         <div className="flex gap-4 text-xs text-slate-400">
           {series.map((s) => (
             <span key={s.key} className="inline-flex items-center gap-1.5">
@@ -204,7 +204,7 @@ function Timeline({ history }: { history: LiveState["history"] }) {
             {hp.poly != null && <> · Polymarket {pct(hp.poly)}</>}
             {hp.kalshi != null && <> · Kalshi {pct(hp.kalshi)}</>}
           </>
-        ) : "Hover or tap the chart for any moment of the night."}
+        ) : "Hover or tap the chart for any moment since polls opened."}
       </p>
     </figure>
   );

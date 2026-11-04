@@ -46,7 +46,7 @@ export default function HouseForecast({ data }: { data: Forecast }) {
 
         <Hero data={data} live={live} />
         <p className="-mt-8 mb-16 text-sm text-slate-500">
-          Updated {updated} ET.{live ? " Results update every few minutes." : " Polls close Tuesday, November 3."}
+          Updated {updated} ET.{live ? " Results update as more races are called." : " Polls close Tuesday, November 3."}
         </p>
 
         {live && <LivePanel live={live} districts={data.districts} />}
@@ -104,7 +104,7 @@ export default function HouseForecast({ data }: { data: Forecast }) {
 
         <footer className="mt-20 border-t border-white/10 pt-6 text-xs leading-relaxed text-slate-500">
           Built by Patrick Melan with data from The Downballot, FiveThirtyEight&apos;s archive, Wikipedia (CC BY-SA),
-          the FEC, the American Presidency Project, Polymarket, and Kalshi. Not affiliated with any campaign or party.
+          the FEC, the American Presidency Project, Polymarket, and Kalshi. Race calls from NBC News and civicAPI. Not affiliated with any campaign or party.
         </footer>
       </div>
     </div>

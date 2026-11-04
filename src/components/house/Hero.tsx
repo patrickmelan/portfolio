@@ -26,6 +26,7 @@ export default function Hero({ data, live }: { data: Forecast; live: LiveState |
           The model expects them to win about <span className="font-semibold text-white">{Math.round(seats)} seats</span>,
           with eight in ten simulations landing between {lo} and {hi}. A majority takes 218.
         </p>
+        {live && <BeforeAndNow data={data} live={live} />}
       </div>
 
       <div>
@@ -41,6 +42,43 @@ export default function Hero({ data, live }: { data: Forecast; live: LiveState |
         <Markets data={data} live={live} />
       </div>
     </section>
+  );
+}
+
+/** The forecast as it stood before any results, fixed at build time, next to where the live model is now. */
+function BeforeAndNow({ data, live }: { data: Forecast; live: LiveState }) {
+  const d = data.layers.deluxe;
+  const lockedAt = new Date(data.updated).toLocaleString("en-US", {
+    month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/New_York",
+  });
+  const rows: [string, string, string][] = [
+    ["Chance Democrats win the House", `${Math.round(d.pControl * 100)}%`, `${Math.round(live.pControl * 100)}%`],
+    ["Democratic seats", `${Math.round(d.meanSeats)}`, `${Math.round(live.meanSeats)}`],
+    ["Likely range (80%)", `${d.seats80[0]}\u2013${d.seats80[1]}`, `${live.seats80[0]}\u2013${live.seats80[1]}`],
+  ];
+  return (
+    <div className="mt-8 max-w-md">
+      <h2 className="text-base font-medium text-white">Our final forecast</h2>
+      <p className="mt-1 text-sm text-slate-400">Locked {lockedAt} ET, before the first polls closed.</p>
+      <table className="mt-3 w-full text-sm tabular-nums">
+        <thead className="text-xs text-slate-500">
+          <tr>
+            <th className="pb-2 text-left font-normal"><span className="sr-only">Measure</span></th>
+            <th className="pb-2 pl-3 text-right font-normal">Forecast</th>
+            <th className="pb-2 pl-3 text-right font-normal">With results</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([label, before, now]) => (
+            <tr key={label} className="border-t border-white/10">
+              <th scope="row" className="py-2 text-left font-normal text-slate-300">{label}</th>
+              <td className="whitespace-nowrap py-2 pl-3 text-right font-semibold text-white">{before}</td>
+              <td className="whitespace-nowrap py-2 pl-3 text-right text-slate-300">{now}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
